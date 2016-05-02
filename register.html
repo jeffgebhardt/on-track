@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Register</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/register.css">
+
+</head>
+
+  <body>
+      <!-- Primary Page Layout
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div class="container">
+        <div class="row">
+            <h1>OnTrack</h1>
+            <h2>New User Registration</h2>
+            <p>Register your name and daily goals to track your activity and progress.</p>
+        </div>
+        <div class="row">
+
+          <!-- The above form looks like this -->
+          <form>
+            <div class="row">
+              <div class="five columns">
+                <label for="nameInput">Your Name</label>
+                <input class="u-full-width" type="text" placeholder="Name" id="nameInput">
+
+                </div>
+                <div class="five columns">
+                <label for="exampleEmailInput">Your email</label>
+                <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+              </div>
+              <div class="row">
+                <div class="five columns">
+
+                  <label for="waterInput">Daily Water Intake</label>
+                  <input class="u-full-width" type="number" placeholder="How many 8oz glasses per day?" id="waterInput">
+
+                  <label for="proteinInput">Daily Protein Intake</label>
+                  <input class="u-full-width" type="number" placeholder="How many grams of protein per day?" id="proteinInput">
+
+                  <label for="exerciseInput">Daily Activity Goal</label>
+                  <input class="u-full-width" type="number" min="1" max="10" step="1" placeholder="How many times do you need to be active per day?" id="exerciseInput">
+
+                  <input id="register-button" class="button-primary u-pull-right" type="submit" value="Submit">
+                </div>
+              </div>
+
+          </form>
+
+          <!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
+
+          <!-- Note: The class .u-full-width is just a utility class shorthand for width: 100% -->
+        </div>
+
+      </div>
+
+    <!-- Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="js/register.js"></script>
+
+    <!-- End Document
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
