@@ -1,0 +1,19 @@
+.welcome {
+  margin: 0 auto;
+  display: flex;
+  align-content: center;
+}
+
+.footerRow {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footerOne {
+  width: 75%
+  line-height: normal;
+}
+
+.footerTwo {
+  width: 25%;
+}
