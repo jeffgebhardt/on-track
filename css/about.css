@@ -1,0 +1,34 @@
+.chart{
+
+}
+
+.four.columns{
+  text-align: center;
+  border-style: solid;
+  border-width: thin;
+}
+
+.twelve.columns{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-style: solid;
+  border-width: thin;
+  text-align: center;
+}
+
+.row{
+}
+
+.two.columns{
+  margin: 10px;
+  border-style: solid;
+  border-width: thin;
+  text-align: center;
+}
+
+.four.columns{
+  margin: 10px;
+  border-style: solid;
+  border-width: thin;
+  text-align: left;
+}

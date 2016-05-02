@@ -416,3 +416,12 @@ there.
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
+
+  header{
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  header h5{
+    margin: 0px;
+  }
