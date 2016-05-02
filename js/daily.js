@@ -6,9 +6,10 @@
  //localStorage
  var retrievedData = localStorage.getItem('OnTrack-currentUser');
  var currentUserTwo = JSON.parse(retrievedData);
- document.getElementById('waterFromStorage').innerHTML = currentUserTwo[]
-
-
+ document.getElementById('waterFromStorage').innerHTML = 'Your water intake goal is: ' + currentUserTwo[2] + '.';
+ document.getElementById('proteinFromStorage').innerHTML = 'Your protein intake goal is: ' + currentUserTwo[3] + '.';
+ document.getElementById('exerciseFromStorage').innerHTML = 'Your exercise goal is ' + currentUserTwo[4] + ' per day.';
+ document.getElementById('helloMessage').innerHTML = 'Hello ' + currentUserTwo[0] + '.';
 
  console.log(currentUserTwo);
 
