@@ -61,11 +61,12 @@ UserList.prototype.registerNewUser = function (){
   var exerciseActivity = document.getElementById('exerciseInput').value;
   if (localStorage.getItem('OnTrack-currentUser')) {
     console.log('Local Storage for OnTrack User ' + name + ' Exists');
-//  } else {
+  } else {
     localStorage.setItem('OnTrack-currentUser',JSON.stringify([name,email,waterIntake,proteinIntake,exerciseActivity]));
   }
   console.log('User: ' + name + ' water intake: ' + waterIntake + ' protein intake: ' + proteinIntake + ' exercise: ' + exerciseActivity);
   window.open('daily.html', '_self');
+
 };
 
 function buttonHandler(e) {
