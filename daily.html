@@ -33,14 +33,14 @@
     <header>
         <div class="row">
           <div class="three columns">
-            <h5>Hi Shane.</h5>
-            <button>Sign Out</button>
+            <h5 id="helloMessage"></h5>
+            <a href="index.html"<button>Sign Out</button></a>
           </div>
           <div class="six columns">
             <h2>Logo</h2>
           </div>
           <div class="three columns">
-            <button>Daily</buton>
+            <a href="charts.html"><button>Charts</buton></a>
           </div>
         </div>
       </header>
@@ -48,8 +48,8 @@
       <div class="four columns">
         <div class="divBorder">
           <h3>Water Intake</h3>
+          <p id="waterFromStorage"></p>
             <div id="waterToPage">
-              <p>Goal: <span id="waterFromStorage"></span></p>
             </div>
             <div>
               <button id="waterButton">Drank One Glass</button>
@@ -59,8 +59,8 @@
       <div class="four columns">
         <div class="divBorder">
           <h3>Protein Intake</h3>
+          <p id="proteinFromStorage"></p>
         <div id="proteinToPage">
-          <p>Goal: <span id="proteinFromStorage"></span></p>
         </div>
         <div>
           <input id="proteinInput" type="number" name="proteinInput"/>
@@ -71,6 +71,7 @@
       <div class="four columns">
         <div class="divBorder">
           <h3>Exercise</h3>
+          <p id ="exerciseFromStorage"></p>
             <ul>
               <li><input type="checkbox">10 Minute Walk</li>
               <li><input type="checkbox">10 Minute Walk</li>
