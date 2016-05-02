@@ -1,5 +1,5 @@
 var allQuotes = [];
-var appendFooterTwo = document.getElementById('footerTwo');
+var newQuote;
 
 function Randomquotes(quote,who) {
   this.quote = quote;
@@ -22,5 +22,16 @@ function randomNumber(min,max) {
 }
 
 function randomQuotePicker() {
-  return allQuotes[randomNumber(0,allQuotes.length - 1)];
+  newQuote = allQuotes[randomNumber(0,allQuotes.length - 1)];
+  return newQuote;
 }
+
+function addQuote(quoteText) {
+  randomQuotePicker();
+  var displayQuote = document.getElementById('footerTwo');
+  var pEl = document.createElement('p');
+  pEl.textContent = newQuote;
+  displayQuote.appendChild('p');
+}
+
+addQuote();
