@@ -3,6 +3,15 @@
  var water = document.getElementById('waterToPage');
  var protein = document.getElementById('proteinToPage');
 
+ //localStorage
+ var retrievedData = localStorage.getItem('OnTrack-currentUser');
+ var currentUserTwo = JSON.parse(retrievedData);
+ document.getElementById('waterFromStorage').innerHTML = currentUserTwo[]
+
+
+
+ console.log(currentUserTwo);
+
  function handleWater(){
    water.textContent = null;
    dayOneArray[0] += 1;
@@ -14,7 +23,8 @@
 
  function handleProtein(){
    protein.textContent = null;
-   var proteinValue = parseInt(event.target.proteinInput.value);
+  //  var proteinValue = parseInt(event.target.proteinInput.value);
+   var proteinValue = parseInt(document.getElementById('proteinInput').value);
    dayOneArray[1] += proteinValue;
    //console.log('Amount of protein consumed: ' + dayOneArray[1]);
    var p = document.createElement('p');
@@ -24,3 +34,7 @@
 
  document.getElementById('waterButton').addEventListener('click', handleWater);
  document.getElementById('proteinButton').addEventListener('click', handleProtein);
+
+ if (localStorage.getItem('OnTrack-currentUser')){
+   console.log('Local Storage Exists');
+ }
