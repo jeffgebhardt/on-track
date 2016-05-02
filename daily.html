@@ -30,35 +30,52 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-    <div class="row" style="margin-top: 5%">
-      <div class="three columns">
-        <div class="divBorder">
-          <h3>Logo Placeholder</h3>
+    <header>
+        <div class="row">
+          <div class="three columns">
+            <h5>Hi Shane.</h5>
+            <button>Sign Out</button>
+          </div>
+          <div class="six columns">
+            <h2>Logo</h2>
+          </div>
+          <div class="three columns">
+            <button>Daily</buton>
+          </div>
         </div>
-      </div>
-      <div class="six columns">
-        <h3>Nav Placeholder</h3>
-      </div>
-      <div class="three columns">
-        <div class="divBorder">
-          <h3>"User Name"</h3>
-        </div>
-      </div>
-    </div>
+      </header>
     <div class="row">
       <div class="four columns">
         <div class="divBorder">
           <h3>Water Intake</h3>
+            <div id="waterToPage">
+              <p>Goal: <span id="waterFromStorage"></span></p>
+            </div>
+            <div>
+              <button id="waterButton">Drank One Glass</button>
+            </div>
         </div>
       </div>
       <div class="four columns">
         <div class="divBorder">
           <h3>Protein Intake</h3>
+        <div id="proteinToPage">
+          <p>Goal: <span id="proteinFromStorage"></span></p>
         </div>
+        <div>
+          <input id="proteinInput" type="number" name="proteinInput"/>
+          <button id="proteinButton">Ate Some Meat</button>
+        </div>
+      </div>
       </div>
       <div class="four columns">
         <div class="divBorder">
           <h3>Exercise</h3>
+            <ul>
+              <li><input type="checkbox">10 Minute Walk</li>
+              <li><input type="checkbox">10 Minute Walk</li>
+              <li><input type="checkbox">10 Minute Walk</li>
+            </ul>
         </div>
       </div>
     </div>
@@ -81,14 +98,10 @@
     </div>
     <div class="row">
       <div class="four columns">
-        <div class="divBorder">
-          <h3>Quote</h3>
-        </div>
+        <h3>Quote of the day...</h3>
       </div>
       <div class="eight columns">
-        <div class="divBorder">
-          <h3>"Luke... I am your father."</h3>
-        </div>
+        <h3>"Luke... I am your father."</h3>
       </div>
     </div>
   </div>

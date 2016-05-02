@@ -46,7 +46,7 @@
                 </div>
                 <div class="five columns">
                 <label for="exampleEmailInput">Your email</label>
-                <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+                <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="emailInput">
               </div>
               <div class="row">
                 <div class="five columns">
@@ -72,7 +72,19 @@
         </div>
 
       </div>
-
+      <div id="Overlay">
+        <div>
+         <p id="DlgContent">Content Goes Here</p>
+         <input id="btnYes"
+             type="button"
+             value="Yes"
+             onclick="DlgHide('Yes')" />
+         <input id="btnNo"
+             type="button"
+             value="No"
+             onclick="DlgHide('No')" />
+        </div>
+      </div>
     <!-- Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script src="js/register.js"></script>

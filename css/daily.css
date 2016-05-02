@@ -10,3 +10,12 @@ h4{
   border: 2px solid black;
   margin-bottom: 5%;
 }
+
+ul{
+  list-style: none;
+  padding-left: 5%;
+}
+
+ li{
+   text-align: center;
+ }
