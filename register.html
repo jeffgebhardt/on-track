@@ -25,12 +25,13 @@
 
 </head>
 
-  <body>
+  <body id="body">
       <!-- Primary Page Layout
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-      <div class="container">
+
+      <div id="page-wrap" class="container">
         <div class="row">
-            <h1>OnTrack</h1>
+            <img src="img/logoTest.png"/>
             <h2>New User Registration</h2>
             <p>Register your name and daily goals to track your activity and progress.</p>
         </div>
@@ -72,16 +73,19 @@
         </div>
 
       </div>
-      <div id="Overlay">
+    </div>
+      <div id="dialog">
         <div>
-         <p id="DlgContent">Content Goes Here</p>
+          <h2 id="modal-heading">Dialog Heading</h2>
+          <hr>
+         <p id="modal-info">Content Goes Here</p>
          <input id="btnYes"
              type="button"
-             value="Yes"
+             value="Login"
              onclick="DlgHide('Yes')" />
          <input id="btnNo"
              type="button"
-             value="No"
+             value="Change Name"
              onclick="DlgHide('No')" />
         </div>
       </div>
