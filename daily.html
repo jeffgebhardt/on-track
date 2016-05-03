@@ -44,7 +44,9 @@
           </div>
         </div>
       </header>
+      <!-- Water Intake, Protein Intake and Exercise -->
     <div class="row">
+      <!-- Water Intake -->
       <div class="four columns">
         <div class="divBorder">
           <h3>Water Intake</h3>
@@ -54,10 +56,17 @@
             <div>
               <button id="waterButton">Drank One Glass</button>
             </div>
-
-            
         </div>
+          <div class="six columns offset-by-three">
+            <h5>Water</h5>
+            <div class="charts" id="water-location">
+            </div>
+            <h4>You</h4>
+            <h4>Goal</h4>
+          </div>
       </div>
+      <!-- End Water Intake -->
+      <!-- Protein Intake -->
       <div class="four columns">
         <div class="divBorder">
           <h3>Protein Intake</h3>
@@ -69,7 +78,18 @@
           <button id="proteinButton">Ate Some Meat</button>
         </div>
       </div>
+      <!-- <div class="four columns"> -->
+      <div class="six columns offset-by-three">
+      <h5>Protein</h5>
+      <div class="charts" id="protein-location">
       </div>
+      <h4>You</h4>
+      <h4>Goal</h4>
+    </div>
+    <!-- </div> -->
+      </div>
+      <!-- End Protein Intake -->
+      <!-- Exercise -->
       <div class="four columns">
         <div class="divBorder">
           <h3>Exercise</h3>
@@ -80,66 +100,7 @@
               <li><input type="checkbox">10 Minute Walk</li>
             </ul>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="four columns">
-        <div class="divBorder">
-          <h3>Graph</h3>
-        </div>
-      </div>
-      <div class="four columns">
-        <div class="divBorder">
-          <h3>graph</h3>
-        </div>
-      </div>
-      <div class="four columns">
-        <div class="divBorder">
-          <h3>graph</h3>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="four columns">
-        <h3>Quote of the day...</h3>
-      </div>
-      <div class="eight columns">
-        <h3>"Luke... I am your father."</h3>
-      </div>
-    </div>
-    <!-- Footer info - calls js/app.js
-    _______________________________________________-->
-      <div class="row" id="footerRow">
-        <div class="three columns" id="footerOne">
-          <p class="copyright">OnTrack</p>
-          <p class="copyRight">&#169;2016</p>
-        </div>
-        <div class="nine columns" id="footerTwo">
-          <p id="quotePara"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <content>
-    <div class="four columns">
-      <div class="six columns offset-by-three">
-      <h5>Water</h5>
-      <div class="charts" id="water-location">
-      </div>
-      <h4>You</h4>
-      <h4>Goal</h4>
-      </div>
-    </div>
-    <div class="four columns">
-      <div class="six columns offset-by-three">
-      <h5>Protein</h5>
-      <div class="charts" id="protein-location">
-      </div>
-      <h4>You</h4>
-      <h4>Goal</h4>
-    </div>
-    </div>
-    <div class="four columns">
+        <!-- <div class="four columns"> -->
       <div class="six columns offset-by-three">
       <h5>Exercise</h5>
       <div class="charts" id="exercise-location">
@@ -147,10 +108,29 @@
       <h4>You</h4>
       <h4>Goal</h4>
     </div>
+    <!-- </div> -->
+      </div>
+      <!-- End Exercise -->
     </div>
-  </content>
+    <!-- End Water Intake, Protein Intake and Exercise -->
+    <!-- Footer info - calls js/app.js
+    _______________________________________________-->
+      <footer class="row" id="footerRow">
+        <div class="three columns" id="footerOne">
+          <p class="copyright">OnTrack</p>
+          <p class="copyRight">&#169;2016</p>
+        </div>
+        <div class="nine columns" id="footerTwo">
+          <p id="quotePara"></p>
+        </div>
+      </footer>
+
+      <!-- Container Closing Div in Next Line -->
+    </div>
+
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <script src="js/quote.js"></script>
   <script src="js/userObject.js"></script>
   <script src="js/charts.js"></script>
