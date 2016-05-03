@@ -87,20 +87,22 @@ function toggleBodyClass(){
   toggleEl.classList.toggle('dialogIsOpen');
 }
 
-function DlgHide(Result)
+function DlgHide(dlgButton)
 {
   // Display the result onscreen.
-  console.log('dlg hide called');
+  console.log('dlg hide called with' + dlgButton);
 
-  var Output = document.getElementById('Result');
-  //Output.innerHTML = 'You clicked: ' + Result;
-  console.log(Output);
+  switch (dlgButton) {
+  case 'Login':
+    window.open('daily.html', '_self');
 
+    break;
+  case 'ChangeName':
+
+    break;
+  }
   // Hide the dialog box.
-  var Dlg = document.getElementById('modal');
-  // Dlg.style.visibility = 'hidden';
   toggleBodyClass();
-  // window.open('daily.html', '_self');
 
 }
 
