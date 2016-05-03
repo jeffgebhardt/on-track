@@ -15,14 +15,13 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/charts.css">
-  <script src="js/chart-template.js"></script>
 </head>
 
 <body>
@@ -44,17 +43,35 @@
       </div>
     </header>
     <div class="twelve columns">
-      <h4>Charts</h4>
+      <h3>Charts</h3>
     </div>
-    <content class="row, chart">
+    <content>
       <div class="four columns">
-        <h6>Water</h6>
+        <div class="six columns offset-by-three">
+        <h5>Water</h5>
+        <div class="charts" id="water-location">
+        </div>
+        <h4>You</h4>
+        <h4>Goal</h4>
+        </div>
       </div>
       <div class="four columns">
-        <h6>Protein</h6>
+        <div class="six columns offset-by-three">
+        <h5>Protein</h5>
+        <div class="charts" id="protein-location">
+        </div>
+        <h4>You</h4>
+        <h4>Goal</h4>
+      </div>
       </div>
       <div class="four columns">
-        <h6>Exercise</h6>
+        <div class="six columns offset-by-three">
+        <h5>Exercise</h5>
+        <div class="charts" id="exercise-location">
+        </div>
+        <h4>You</h4>
+        <h4>Goal</h4>
+      </div>
       </div>
     </content>
   </content>
@@ -65,8 +82,11 @@
   </div>
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="js/charts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js">
 
+  </script>
+  <script src="js/charts.js"></script>
+  <!-- <script src="js/chart-template.js"></script> -->
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
