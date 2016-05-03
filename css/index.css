@@ -1,22 +1,15 @@
-/*.welcome {
-  margin: 0 auto;
+.zippyIntro {
+  transition: 1s;
+  transform: translateY(1000);
+}
+
+img:hover {
+  transform: rotate3d(1,1,1,360deg) scale(0.75) translateY(-25px);
+}
+
+#footerOne {
   display: flex;
-  align-content: center;
-}*/
-
-.footerRow {
-  display: flex;
-  align-items: flex-start;
-}
-
-.footerOne {
-  width: 75%
-}
-
-.footerTwo {
-  width: 25%;
-}
-
-p.copyRight {
-  line-height: 0;
+  align-content: space-around;
+  flex-direction:column;;
+  line-height: 0px;
 }
