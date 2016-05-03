@@ -4,24 +4,29 @@ var currentUserData = [];
 
 var currentUser = new User();
 
+function getDateNumFromDate(dateObject){
+  // console.log('date before: ' + dateObject.getTime());
+  dateObject.setMilliseconds(0); dateObject.setSeconds(0); dateObject.setMinutes(0); dateObject.setHours(0);
+  console.log('date after' + dateObject.getTime());
+  return dateObject.valueOf();
+};
+
 function User(){
   this.userName = '';
   this.userEmail = '';
-
   this.dailyWaterIntakeGoal = 0;
   this.dailyWaterIntake = 0;
-
   this.dailyProteinIntakeGoal = 0;
   this.dailyProteinIntake = 0;
-
   this.dailyExerciseGoal = 0;
   this.dailyExercise = 0;
-
   this.currentDate = new Date();
-  var today = this.currentDate.valueOf();
-  this.currentDateNumber = Math.floor(today / 100000) * 100000;
+  var test = getDateNumFromDate(new Date());
+  this.currentDateNumber = test;
+
   console.log('creating User ' + this.currentDate.valueOf() + ' ' + this.currentDateNumber);
 }
+
 
 User.prototype.getUserDataFromStorage = function() {
 //  initialize user name and goals
@@ -41,12 +46,12 @@ User.prototype.getUserDataFromStorage = function() {
   else console.log('error trying to get current user from storage');
 // check the date - if current date (not time) is same as stored in currentUser local Storage
 // then initialize progress from local storage, otherwise set to zero.
-  var today = new Date();
-  today = Math.floor(today.valueOf() / 100000) * 100000;
+  var todayDate = new Date();
+  var today = getDateNumFromDate(todayDate);
+
   console.log('current date num; ' + today + ' loaded Date Num: ' + loadUserData.currentDateNumber);
   if ( today == loadUserData.currentDateNumber) {
     // We're on the same day
-    conso
     console.log('same day');
     this.dailyWaterIntake = loadUserData.dailyWaterIntake;
     this.dailyProteinIntake = loadUserData.dailyProteinIntake;
@@ -133,11 +138,16 @@ User.prototype.registerNewUser = function (){
   this.dailyWaterIntakeGoal = document.getElementById('waterInput').value;
   this.dailyProteinIntakeGoal = document.getElementById('proteinInput').value;
   this.dailyExerciseGoal = document.getElementById('exerciseInput').value;
-  console.log('Localstorage username: ' + JSON.parse(localStorage.getItem('OnTrack-currentUser')).userName + ' entered name: ' + this.userName);
-  if (JSON.parse(localStorage.getItem('OnTrack-currentUser')).userName == this.userName) {
-    console.log('Local Storage for OnTrack User ' + this.userName + ' Exists');
-    DlgShow('Sorry ' + this.UserName + ', that name is already in use.', 'Do you want to login as <b>' + name + '<b> or change your user name?');
-  
+  // console.log('Localstorage username: ' + JSON.parse(localStorage.getItem('OnTrack-currentUser')).userName + ' entered name: ' + this.userName);
+  if (localStorage.getItem('OnTrack-currentUser')) {
+    if (JSON.parse(localStorage.getItem('OnTrack-currentUser')).userName == this.userName) {
+      console.log('Local Storage for OnTrack User ' + this.userName + ' Exists');
+      DlgShow('Sorry ' + this.UserName + ', that name is already in use.', 'Do you want to login as <b>' + name + '<b> or change your user name?');
+    } else {
+      localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
+      console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
+      window.open('daily.html', '_self');
+    }
   } else {
     localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
     console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
