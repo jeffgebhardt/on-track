@@ -40,16 +40,17 @@ html, body, #page-wrap {
 }
 #dialog {
   @include transition(all 0.4s ease);
-  border-radius: 15px;
+  border-radius: 5px;
   pointer-events: none;
   position: fixed;
   width: 50%;
   padding: 60px;
   background: white;
-  box-shadow: 0 0 25px black;
-  top: 50%;
-  left: 50%;
-  margin: 0 0 0 -25%;
+  border: 2px solid black;
+  /*box-shadow: 0 0 25px black;*/
+  top: 25%;
+  left: 25%;
+  margin: 0 0 0 0%;
   opacity: 0;
   @include transform(scale(1.5));
   .dialogIsOpen & {
