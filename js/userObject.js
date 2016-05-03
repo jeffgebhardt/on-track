@@ -17,6 +17,7 @@ function User(){
   this.currentDate = new Date();
   var test = getDateNumFromDate(new Date());
   this.currentDateNumber = test;
+  this.userData = [];
 
   console.log('creating User ' + this.currentDate.valueOf() + ' ' + this.currentDateNumber);
 }
@@ -25,30 +26,31 @@ User.prototype.getUserDataFromStorage = function() {
 //  initialize user name and goals
   console.log('getUserDataFromStorage');
   if (localStorage.getItem('OnTrack-currentUser')) {
-    var loadUserData = JSON.parse(localStorage.getItem('OnTrack-currentUser'));
+    var loadUserInfo = JSON.parse(localStorage.getItem('OnTrack-currentUser'));
 
-    this.userName = loadUserData.userName;
-    this.userEmail = loadUserData.userEmail;
+    this.userName = loadUserInfo.userName;
+    this.userEmail = loadUserInfo.userEmail;
 
-    this.dailyWaterIntakeGoal = loadUserData.dailyWaterIntakeGoal;
-    this.dailyProteinIntakeGoal = loadUserData.dailyProteinIntakeGoal;
-    this.dailyExerciseGoal = loadUserData.dailyExerciseGoal;
+    this.dailyWaterIntakeGoal = loadUserInfo.dailyWaterIntakeGoal;
+    this.dailyProteinIntakeGoal = loadUserInfo.dailyProteinIntakeGoal;
+    this.dailyExerciseGoal = loadUserInfo.dailyExerciseGoal;
     console.log(this.UserName + ' ' + this.dailyWaterIntakeGoal);
 
   }
   else console.log('error trying to get current user from storage');
-// check the date - if current date (not time) is same as stored in currentUser local Storage
-// then initialize progress from local storage, otherwise set to zero.
+
+  // check the date - if current date (not time) is same as stored in currentUser local Storage
+  // then initialize progress from local storage, otherwise set to zero.
   var todayDate = new Date();
   var today = getDateNumFromDate(todayDate);
 
-  console.log('current date num; ' + today + ' loaded Date Num: ' + loadUserData.currentDateNumber);
-  if ( today == loadUserData.currentDateNumber) {
+  console.log('current date num; ' + today + ' loaded Date Num: ' + loadUserInfo.currentDateNumber);
+  if ( today == loadUserInfo.currentDateNumber) {
     // We're on the same day
     console.log('same day');
-    this.dailyWaterIntake = loadUserData.dailyWaterIntake;
-    this.dailyProteinIntake = loadUserData.dailyProteinIntake;
-    this.dailyExercise = loadUserData.dailyExerciseGoal;
+    this.dailyWaterIntake = loadUserInfo.dailyWaterIntake;
+    this.dailyProteinIntake = loadUserInfo.dailyProteinIntake;
+    this.dailyExercise = loadUserInfo.dailyExerciseGoal;
   } else {
     console.log('new day');
     // today is a new day - set our daily progress to 0
@@ -62,9 +64,11 @@ User.prototype.getUserDataFromStorage = function() {
 };
 
 User.prototype.drinkWater = function(amount) {
+  this.dailyWaterIntake += 1;
 };
 
 User.prototype.eatProtein = function(amount) {
+  this.dailyProteinIntake += amount;
 };
 
 User.prototype.exercise = function(amount) {
@@ -77,7 +81,38 @@ User.prototype.writeUserInfoToLocalStorage = function() {
 
 };
 
-User.prototype.writeUserDataToLocalStorage = function(){
+function currentUserDataArray () {
+  var myArray = [];
+
+  myArray.push(currentUser.currentDateNumber);
+  myArray.push(currentUser.userName);
+  myArray.push(currentUser.userEmail);
+  myArray.push(currentUser.dailyWaterIntakeGoal);
+  myArray.push(currentUser.dailyWaterIntake);
+  myArray.push(currentUser.dailyProteinIntakeGoal);
+  myArray.push(currentUser.dailyProteinIntake);
+  myArray.push(currentUser.dailyExerciseGoal);
+  myArray.push(currentUser.dailyExercise);
+  return myArray;
+};
+
+User.prototype.updateUserData = function(){
+  var loadUserData = localStorage.getItem('OnTrack-currentUserData');
+  if (loadUserData) {
+    //we already have userData stored.
+    var lastUserData = loadUserData[loadUserData.length - 1];
+    if (lastUserData[0] === currentUser.currentDateNumber){
+      // we have a match - current date is same as last date stored.
+      loadUserData.pop();
+      loadUserData.push(currentUserDataArray());
+    } else {
+      // last data doesn't match, push new data.
+      loadUserData.push(currentUserDataArray);
+    }
+
+    this.userData = loadUserData;
+  }
+
 // write data to a new key that includes username
 // data is an array of array data. One element for each day
 // each day looks like [daynumber, waterIntake, waterGoal, proteinIntake, proteinGoal, exercise, exerciseGoal]
@@ -92,29 +127,8 @@ User.prototype.updateLocalStorage = function() {
 // update userInfo and userData to local storage
 };
 
-
 // one or more functions to get an array of chart data from the localStorage userData.
 User.prototype.getChartData = function () {
-};
-
-User.prototype.makeCurrentFromData = function (name, water, protein, exercise) {
-  this.userName = name;
-  this.dailyWaterIntake = water;
-  this.dailyProteinIntake = protein;
-  this.dailyExercise = exercise;
-  currentUserData = [name, water, protein, exercise];
-  this.writeCurrentToStorage();
-};
-
-User.prototype.makeCurrentFromStorage = function (){
-  if (localStorage.getItem('OnTrack-currentUser')) {
-    currentUserData = JSON.parse(localStorage.getItem('OnTrack-currentUser'));
-  }
-  else console.log('error trying to get current user from storage');
-};
-
-User.prototype.writeCurrentToStorage = function (){
-  localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUserData));
 };
 
 User.prototype.clearCurrentUserStorage = function () {
