@@ -5,6 +5,13 @@ var protein = document.getElementById('proteinToPage');
 
 var currentUser = new User();
 
+function getDateNumFromDate(dateObject){
+  console.log('date before: ' + dateObject.getTime());
+  dateObject.setMilliseconds(0); dateObject.setSeconds(0); dateObject.setMinutes(0); dateObject.setHours(0);
+  console.log('date after' + dateObject.getTime());
+  return dateObject.getTime();
+};
+
 function User(){
   this.userName = '';
   this.userEmail = '';
@@ -15,8 +22,9 @@ function User(){
   this.dailyExerciseGoal = 0;
   this.dailyExercise = 0;
   this.currentDate = new Date();
-  var today = this.currentDate.valueOf();
-  this.currentDateNumber = Math.floor(today / 100000) * 100000;
+  var test = getDateNumFromDate(new Date());
+  this.currentDateNumber = test;
+
   console.log('creating User ' + this.currentDate.valueOf() + ' ' + this.currentDateNumber);
 }
 
@@ -34,15 +42,16 @@ User.prototype.getUserDataFromStorage = function() {
     this.dailyProteinIntakeGoal = loadUserData.dailyProteinIntakeGoal;
     this.dailyExerciseGoal = loadUserData.dailyExerciseGoal;
     console.log(this.userName + ' ' + this.dailyWaterIntakeGoal);
+    console.log('loaded date number' + loadUserData.currentDateNumber);
 
   }
   else console.log('error trying to get current user from storage');
   // check the date - if current date (not time) is same as stored in currentUser local Storage
   // then initialize progress from local storage, otherwise set to zero.
   var today = new Date();
-  today = Math.floor(today.valueOf() / 100000) * 100000;
+  todayNumber = getDateNumFromDate(today);
   console.log('current date num; ' + today + ' loaded Date Num: ' + loadUserData.currentDateNumber);
-  if ( today == loadUserData.currentDateNumber) {
+  if ( todayNumber == loadUserData.currentDateNumber) {
    // We're on the same day
     console.log('same day');
     this.dailyWaterIntake = loadUserData.dailyWaterIntake;
