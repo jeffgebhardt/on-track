@@ -59,26 +59,24 @@ User.prototype.getUserDataFromStorage = function() {
     this.dailyExercise = 0;
   }
   this.currentDateNumber = today;
-  this.currentDateNumber = new Date();
+  this.currentDate = new Date();
+  this.userData = loadUserInfo.userData;
 
 };
 
 User.prototype.drinkWater = function(amount) {
   this.dailyWaterIntake += 1;
+  this.updateLocalStorage();
+
 };
 
 User.prototype.eatProtein = function(amount) {
   this.dailyProteinIntake += amount;
+  this.updateLocalStorage();
 };
 
 User.prototype.exercise = function(amount) {
-};
-
-User.prototype.writeUserInfoToLocalStorage = function() {
-
-// update info in our OnTrack-currentUser so data is always persisted
-  localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUserData));
-
+  this.updateLocalStorage();
 };
 
 function currentUserDataArray () {
@@ -97,34 +95,45 @@ function currentUserDataArray () {
 };
 
 User.prototype.updateUserData = function(){
-  var loadUserData = localStorage.getItem('OnTrack-currentUserData');
-  if (loadUserData) {
+  // write data to a new key that includes username
+  // data is an array of array data. One element for each day
+  // each day looks like [daynumber, waterIntake, waterGoal, proteinIntake, proteinGoal, exercise, exerciseGoal]
+  // when we write the data, we read in the existing data, check the day number of the last element
+  // if it is the same as current date, we pop that off the end of the array, replace it with current and write the whole new array to storage
+  // if it is not the same (less than), we push our current user data to end and re-write array
+  // if it is less than, someone has changed the clock and we bail
+
+  // var loadUserData = localStorage.getItem('OnTrack-currentUserData');
+  var loadUserData = this.userData;
+  if (loadUserData.length > 0 ) {
+    console.log('we have some data already' + loadUserData);
     //we already have userData stored.
+
     var lastUserData = loadUserData[loadUserData.length - 1];
     if (lastUserData[0] === currentUser.currentDateNumber){
+      console.log('we have a match');
       // we have a match - current date is same as last date stored.
       loadUserData.pop();
       loadUserData.push(currentUserDataArray());
     } else {
       // last data doesn't match, push new data.
-      loadUserData.push(currentUserDataArray);
+      loadUserData.push(currentUserDataArray());
     }
 
     this.userData = loadUserData;
+  } else {
+    // no userData stored yet
+    console.log('creating userDataArray');
+    this.userData.push(currentUserDataArray());
   }
-
-// write data to a new key that includes username
-// data is an array of array data. One element for each day
-// each day looks like [daynumber, waterIntake, waterGoal, proteinIntake, proteinGoal, exercise, exerciseGoal]
-// when we write the data, we read in the existing data, check the day number of the last element
-// if it is the same as current date, we pop that off the end of the array, replace it with current and write the whole new array to storage
-// if it is not the same (less than), we push our current user data to end and re-write array
-// if it is less than, someone has changed the clock and we bail
 
 };
 
 User.prototype.updateLocalStorage = function() {
 // update userInfo and userData to local storage
+  currentUser.updateUserData();
+  localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
+
 };
 
 // one or more functions to get an array of chart data from the localStorage userData.
@@ -159,4 +168,18 @@ User.prototype.registerNewUser = function (){
     console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
     window.open('daily.html', '_self');
   }
+};
+
+User.prototype.updateHTML = function () {
+//localStorage
+// var retrievedData = localStorage.getItem('OnTrack-currentUser');
+// var currentUserTwo = JSON.parse(retrievedData);
+
+  document.getElementById('waterFromStorage').innerHTML = 'Your water intake goal is: ' + this.dailyWaterIntakeGoal + '.';
+  document.getElementById('proteinFromStorage').innerHTML = 'Your protein intake goal is: ' + this.dailyProteinIntakeGoal + '.';
+  document.getElementById('exerciseFromStorage').innerHTML = 'Your exercise goal is ' + this.dailyExerciseGoal + ' per day.';
+  document.getElementById('helloMessage').innerHTML = 'Hello ' + this.userName + '.';
+  console.log(this.userName);
+
+  console.log(currentUser);
 };
