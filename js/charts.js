@@ -4,6 +4,20 @@ var currentUserData = [2,70,3];
 var userGreeting = document.getElementById('user-greeting');
 var firstName = currentUserTwo[0];
 
+var percentages = [
+  parseInt(currentUserTwo[2]),
+  parseInt(currentUserTwo[3]),
+  parseInt(currentUserTwo[4]),
+];
+
+var finishedPercentages = [];
+
+(function getPercentages (){
+  for (i = 0; i < currentUserData.length; i++){
+    finishedPercentages.push(currentUserData[i] / percentages[i]);
+  }
+})();
+
 (function greetUser(){
   var h5 = document.createElement('h5');
   h5.textContent = 'Hi ' + firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
@@ -74,16 +88,27 @@ function handleExerciseGraph(){
   exerciseLocation.innerHTML = '<canvas id="exercise-chart"></canvas>';
   var contextExercise = document.getElementById('exercise-chart').getContext('2d');
   var data;
-//   var fillColor0 = data.datasets[0].fillColor;
-//   var strokeColor0 = data.datasets[0].strokeColor;
-//
-//   if (currentUserData[2] < currentUserTwo[4]){
-//     fillColor0 = '#c2f3c5';
-//     strokeColor0 = '#a4d2a6';
-// } else if(currentUserData[2] > currentUserTwo[4]){
-//
-// } else{
-
+  // var fillColor0 = data.datasets[0].fillColor;
+  // var strokeColor0 = data.datasets[0].strokeColor;
+  //
+  // if (currentUserData[2] < currentUserTwo[4]){
+  //   fillColor0 = '#c2f3c5';
+  //   strokeColor0 = '#a4d2a6';
+  // } else if(currentUserData[2] > currentUserTwo[4]){
+  //   fillColor0 = '#dfb4b4';
+  //   strokeColor0 = '#bc4a4a';
+  // } else{
+  //   fillColor0 = '#c2f3c5';
+  //   strokeColor0 = '#a4d2a6';
+  // }
+  //
+  // data = {
+  //   labels: ['', ''],
+  //   datasets: [{
+  //     data: [currentUserData[2]]
+  //   }],
+  // };
+//if-else not working, try in lower/higher numbers and it combines the two bars
   if (currentUserData[2] < currentUserTwo[4]){
     data = {
       labels: ['', ''],
