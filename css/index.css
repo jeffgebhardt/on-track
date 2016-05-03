@@ -17,3 +17,7 @@
 .footerTwo {
   width: 25%;
 }
+
+p.copyRight {
+  margin: 0;
+}
