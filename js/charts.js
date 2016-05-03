@@ -3,20 +3,24 @@ var currentUserTwo = JSON.parse(retrievedData);
 var currentUserData = [2,70,3];
 var userGreeting = document.getElementById('user-greeting');
 var firstName = currentUserTwo[0];
-
-var percentages = [
+var waterLocation = document.getElementById('water-location');
+var proteinLocation = document.getElementById('protein-location');
+var exerciseLocation = document.getElementById('exercise-location');
+var initialPercentages = [
   parseInt(currentUserTwo[2]),
   parseInt(currentUserTwo[3]),
   parseInt(currentUserTwo[4]),
 ];
-
 var finishedPercentages = [];
 
-(function getPercentages (){
-  for (i = 0; i < currentUserData.length; i++){
-    finishedPercentages.push(currentUserData[i] / percentages[i]);
-  }
-})();
+var options = {
+  responsive: true,
+  showScale: false,
+  scaleOverride: true,
+  scaleSteps: 6,
+  scaleStepWidth: 20,
+  scaleStartValue: 0
+};
 
 (function greetUser(){
   var h5 = document.createElement('h5');
@@ -24,134 +28,119 @@ var finishedPercentages = [];
   userGreeting.appendChild(h5);
 })();
 
-var waterLocation = document.getElementById('water-location');
-var proteinLocation = document.getElementById('protein-location');
-var exerciseLocation = document.getElementById('exercise-location');
+(function getPercentages (){
+  for (i = 0; i < currentUserData.length; i++){
+    finishedPercentages.push(Math.round((currentUserData[i] / initialPercentages[i] * 100)));
+  }
+})();
 
-function handleWaterGraph(){
+//Charts
+
+function showWaterChart(){
   waterLocation.innerHTML = '<canvas id="water-chart"></canvas>';
   var contextWater = document.getElementById('water-chart').getContext('2d');
+
+  var todayWater = finishedPercentages[0];
+  var conditionalFill;
+  var conditionalStroke;
+  if (todayWater < 100) {
+    conditionalFill = '#f8f7b2';    //yellow
+    conditionalStroke = '#d1cf11';
+  } else if (todayWater > 100) {
+    conditionalFill = '#d2a4a4';    //red
+    conditionalStroke = '#b02e2e';
+  } else{
+    conditionalFill = '#a4d2a6';    //green
+    conditionalStroke = '#35a43a';
+  }
 
   var data = {
     labels: ['', ''],
     datasets: [{
-      label: 'You',
-      fillColor: [ '#eef28c'],
-      strokeColor: '#d8e01f',
-      data: [currentUserData[0]]
+      fillColor: conditionalFill,
+      strokeColor: conditionalStroke,
+      data: [todayWater]
     },
-      {label: 'Goal',
-      fillColor: [ '#b4d7df'],
-      strokeColor: '#3aa7bf',
-      boxWidth: 100,
-      data: [currentUserTwo[2]]
-    }]
-  };
-
-  var options = {
-    responsive: true,
-    showScale: false,
+      {
+        fillColor: '#b4d7df',
+        strokeColor: '#3aa7bf',
+        data: [100]
+      }]
   };
 
   var waterChart = new Chart(contextWater).Bar(data, options);
 }
 
-function handleProteinGraph(){
+function showProteinChart(){
   proteinLocation.innerHTML = '<canvas id="protein-chart"></canvas>';
   var contextProtein = document.getElementById('protein-chart').getContext('2d');
+
+  var todayProtein = finishedPercentages[1];
+  var conditionalFill;
+  var conditionalStroke;
+  if (todayProtein < 100) {
+    conditionalFill = '#f8f7b2';    //yellow
+    conditionalStroke = '#d1cf11';
+  } else if (todayProtein > 100) {
+    conditionalFill = '#d2a4a4';    //red
+    conditionalStroke = '#b02e2e';
+  } else{
+    conditionalFill = '#a4d2a6';    //green
+    conditionalStroke = '#35a43a';
+  }
 
   var data = {
     labels: ['', ''],
     datasets: [{
-      label: 'You',
-      fillColor: [ '#dfb4b4'],
-      strokeColor: '#bc4a4a',
-      data: [currentUserData[1]]
+      fillColor: conditionalFill,
+      strokeColor: conditionalStroke,
+      data: [todayProtein]
     },
-      {label: 'Goal',
-      fillColor: [ '#b4d7df'],
-      strokeColor: '#3aa7bf',
-      boxWidth: 100,
-      data: [currentUserTwo[3]]
-    }]
-  };
-
-  var options = {
-    responsive: true,
-    showScale: false,
+      {
+        fillColor: '#b4d7df',
+        strokeColor: '#3aa7bf',
+        data: [100]
+      }]
   };
 
   var proteinChart = new Chart(contextProtein).Bar(data, options);
 }
 
-function handleExerciseGraph(){
+function showExerciseChart(){
   exerciseLocation.innerHTML = '<canvas id="exercise-chart"></canvas>';
   var contextExercise = document.getElementById('exercise-chart').getContext('2d');
-  var data;
-  // var fillColor0 = data.datasets[0].fillColor;
-  // var strokeColor0 = data.datasets[0].strokeColor;
-  //
-  // if (currentUserData[2] < currentUserTwo[4]){
-  //   fillColor0 = '#c2f3c5';
-  //   strokeColor0 = '#a4d2a6';
-  // } else if(currentUserData[2] > currentUserTwo[4]){
-  //   fillColor0 = '#dfb4b4';
-  //   strokeColor0 = '#bc4a4a';
-  // } else{
-  //   fillColor0 = '#c2f3c5';
-  //   strokeColor0 = '#a4d2a6';
-  // }
-  //
-  // data = {
-  //   labels: ['', ''],
-  //   datasets: [{
-  //     data: [currentUserData[2]]
-  //   }],
-  // };
-//if-else not working, try in lower/higher numbers and it combines the two bars
-  if (currentUserData[2] < currentUserTwo[4]){
-    data = {
-      labels: ['', ''],
-      datasets: [{
-        fillColor: [ '#c2f3c5'],
-        strokeColor: '#a4d2a6',
-        data: [currentUserData[2]]
-      }],
-    };
-  } else if(currentUserData[2] > currentUserTwo[4]){
-    data = {
-      labels: ['', ''],
-      datasets: [{
-        fillColor: [ '#dfb4b4'],
-        strokeColor: '#bc4a4a',
-        data: [currentUserData[2]]
-      },
-    ]
-    };
+
+  var todayExercise = finishedPercentages[2];
+  var conditionalFill;
+  var conditionalStroke;
+  if (todayExercise < 100) {
+    conditionalFill = '#f8f7b2';    //yellow
+    conditionalStroke = '#d1cf11';
+  } else if (todayExercise > 100) {
+    conditionalFill = '#d2a4a4';    //red
+    conditionalStroke = '#b02e2e';
   } else{
-    data = {
-      labels: ['', ''],
-      datasets: [{
-        fillColor: [ '#c2f3c5'],
-        strokeColor: '#a4d2a6',
-        data: [currentUserData[2]]
-      },
-          {fillColor: [ '#b4d7df'],
-          strokeColor: '#3aa7bf',
-          boxWidth: 100,
-          data: [currentUserTwo[4]]
-        }]
-    };
+    conditionalFill = '#a4d2a6';    //green
+    conditionalStroke = '#35a43a';
   }
 
-  var options = {
-    responsive: true,
-    showScale: false,
+  var data = {
+    labels: ['', ''],
+    datasets: [{
+      fillColor: conditionalFill,
+      strokeColor: conditionalStroke,
+      data: [todayExercise]
+    },
+      {
+        fillColor: '#b4d7df',
+        strokeColor: '#3aa7bf',
+        data: [100]
+      }]
   };
 
   var exerciseChart = new Chart(contextExercise).Bar(data, options);
 }
 
-handleWaterGraph();
-handleProteinGraph();
-handleExerciseGraph();
+showWaterChart();
+showProteinChart();
+showExerciseChart();
