@@ -1,18 +1,18 @@
-var retrievedData = localStorage.getItem('OnTrack-currentUser');
+// var retrievedData = localStorage.getItem('OnTrack-currentUser');
 // var currentUserTwo = JSON.parse(retrievedData);
 
 var currentUserTwo = [3,90,5];
-var currentUserData = [2,70,3];
-var userGreeting = document.getElementById('user-greeting');
-var firstName = currentUserTwo[0];
+var currentUserData = [5,70,5];
+// var userGreeting = document.getElementById('user-greeting');
+// var firstName = currentUserTwo[0];
 var waterLocation = document.getElementById('water-location');
 var proteinLocation = document.getElementById('protein-location');
 var exerciseLocation = document.getElementById('exercise-location');
-var initialPercentages = [
-  parseInt(currentUserTwo[2]),
-  parseInt(currentUserTwo[3]),
-  parseInt(currentUserTwo[4]),
-];
+// var initialPercentages = [
+//   parseInt(currentUserTwo[2]),
+//   parseInt(currentUserTwo[3]),
+//   parseInt(currentUserTwo[4]),
+// ];
 var finishedPercentages = [];
 
 var options = {
@@ -32,7 +32,7 @@ var options = {
 
 (function getPercentages (){
   for (i = 0; i < currentUserData.length; i++){
-    finishedPercentages.push(Math.round((currentUserData[i] / initialPercentages[i] * 100)));
+    finishedPercentages.push(Math.round((currentUserData[i] / currentUserTwo[i] * 100)));
   }
 })();
 
@@ -70,7 +70,7 @@ function showWaterChart(){
       }]
   };
 
-  var waterChart = new Chart(contextWater).Bar(data, options);
+  new Chart(contextWater).Bar(data, options);
 }
 
 function showProteinChart(){
