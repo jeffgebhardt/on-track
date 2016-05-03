@@ -61,12 +61,13 @@ UserList.prototype.registerNewUser = function (){
   var exerciseActivity = document.getElementById('exerciseInput').value;
   if (localStorage.getItem('OnTrack-currentUser')) {
     console.log('Local Storage for OnTrack User ' + name + ' Exists');
+    DlgShow('Sorry ' + name + ', that name is already in use.', 'Do you want to login as <b>' + name + '<b> or change your user name?');
+
   } else {
     localStorage.setItem('OnTrack-currentUser',JSON.stringify([name,email,waterIntake,proteinIntake,exerciseActivity]));
+    console.log('User: ' + name + ' water intake: ' + waterIntake + ' protein intake: ' + proteinIntake + ' exercise: ' + exerciseActivity);
+    window.open('daily.html', '_self');
   }
-  console.log('User: ' + name + ' water intake: ' + waterIntake + ' protein intake: ' + proteinIntake + ' exercise: ' + exerciseActivity);
-  window.open('daily.html', '_self');
-
 };
 
 function buttonHandler(e) {
@@ -80,27 +81,40 @@ function buttonHandler(e) {
 
   }
 }
+
+function toggleBodyClass(){
+  var toggleEl = document.getElementById('body');
+  toggleEl.classList.toggle('dialogIsOpen');
+}
+
 function DlgHide(Result)
 {
   // Display the result onscreen.
-  var Output = document.getElementById("Result");
-  Output.innerHTML = "You clicked: " + Result;
+  console.log('dlg hide called');
+
+  var Output = document.getElementById('Result');
+  //Output.innerHTML = 'You clicked: ' + Result;
+  console.log(Output);
 
   // Hide the dialog box.
-  var Dlg = document.getElementById("Overlay");
-  Dlg.style.visibility = "hidden";
+  var Dlg = document.getElementById('modal');
+  // Dlg.style.visibility = 'hidden';
+  toggleBodyClass();
+  // window.open('daily.html', '_self');
+
 }
-function DlgShow(Message)
+
+function DlgShow(dlgHeading, dlgMessage)
 {
   // Change the message.
-  var Msg = document.getElementById("DlgContent");
-  Msg.innerHTML = Message;
+  document.getElementById('modal-heading').innerHTML = dlgHeading;
+  document.getElementById('modal-info').innerHTML = dlgMessage;
 
   // Display the dialog box.
-  var Dlg = document.getElementById("Overlay");
-  Dlg.style.visibility = "visible";
+  // var Dlg = document.getElementById('modal');
+  // Dlg.style.visibility = 'visible';
+  toggleBodyClass();
 }
-
 
 //document.getElementById('register-button').addEventListener('click', clickHandler, false);
 
