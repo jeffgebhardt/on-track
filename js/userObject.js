@@ -152,11 +152,19 @@ User.prototype.clearCurrentUserStorage = function () {
   }
 };
 
+User.prototype.usedMachine = function(){
+  localStorage.setItem('OnTrack', true);
+};
+
+User.prototype.newMachine = function(){
+  localStorage.removeItem('OnTrack');
+};
+
 User.prototype.registerNewUserRemote = function() {
   console.log('registering new user remote');
-  var usersRef = myDataRef.child("users");
-  usersRef.set( currentUser );
-
+  var usersRef = myDataRef.child('users');
+  var curUserRef = usersRef.child(this.userName);
+  curUserRef.set( currentUser );
 };
 
 User.prototype.registerNewUser = function (){
@@ -172,15 +180,19 @@ User.prototype.registerNewUser = function (){
       // console.log('Local Storage for OnTrack User ' + this.userName + ' Exists');
       DlgShow('Sorry ' + this.userName + ', that name is already in use.', 'Do you want to login as <b>' + this.userName + '</b> or change your user name?');
     } else { // local storage does not match just entered userName
+      console.log('new user');
       this.registerNewUserRemote();
       localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
+      currentUser.signIn();
+
       // console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
-      window.open('daily.html', '_self');
+      // window.open('daily.html', '_self');
     }
   } else // no local storage
   {
     this.registerNewUserRemote();
     localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
+    currentUser.signIn();
     window.open('daily.html', '_self');
   }
 };
