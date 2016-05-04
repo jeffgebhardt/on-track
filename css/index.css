@@ -35,3 +35,24 @@ img {
   flex-direction:column;;
   line-height: 0px;
 }
+footer{
+  clear: both;
+  width: 80%;
+  margin: 0 auto;
+  padding: .3vw;
+  margin-bottom: 1vw;
+  text-align: center;
+  flex-direction: column;
+  /*border: 3px solid black;*/
+}
+
+footer h8{
+  display: block;
+  margin: .1vw;
+  font-size: 9pt;
+}
+
+footer p{
+  font-style: italic;
+  margin-bottom: 1vw;
+}
