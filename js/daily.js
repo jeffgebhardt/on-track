@@ -51,12 +51,28 @@ function handleExercise(){
   var exerciseValue = parseInt(document.getElementById('exerciseInput').value);
   currentUser.doExercise(exerciseValue);
   exerciseChart.datasets[0].bars[0].value = (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100;
+  // exerciseChart.datasets[0].bars[0].value = ' ';
   conditionalColors(exerciseChart);
   exerciseChart.update();
   //console.log('Minutes of activity today: ' + dayOneArray[1]);
   var p = document.createElement('p');
   exercise.appendChild(p);
-  p.textContent = currentUser.dailyExercise + ' grams of protein consumed today.';
+  p.textContent = currentUser.dailyExercise + ' minutes of activity today.';
+}
+
+function handleExerciseTwo(){
+  exercise.textContent = null;
+  //  var exerciseValue = parseInt(event.target.exerciseInput.value);
+  var exerciseValue = parseInt(document.getElementById('exerciseInput').value);
+  currentUser.doExercise(exerciseValue);
+  // exerciseChart.datasets[0].bars[0].value = (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100;
+  exerciseChart.datasets[0].bars[0].value = ' ';
+  conditionalColors(exerciseChart);
+  exerciseChart.update();
+  //console.log('Minutes of activity today: ' + dayOneArray[1]);
+  var p = document.createElement('p');
+  exercise.appendChild(p);
+  p.textContent = currentUser.dailyExercise + ' minutes of activity today.';
 }
 
 User.prototype.drinkWater = function(amount) {
@@ -78,6 +94,8 @@ User.prototype.doExercise = function(amount) {
 document.getElementById('waterButton').addEventListener('click', handleWater);
 document.getElementById('proteinButton').addEventListener('click', handleProtein);
 document.getElementById('exerciseButton').addEventListener('click', handleExercise);
+document.getElementById('exerciseButton').addEventListener('contextmenu', handleExerciseTwo);
+
 
 User.prototype.updateDailyHTML = function () {
   //localStorage
