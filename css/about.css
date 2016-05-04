@@ -41,13 +41,10 @@ footer{
   /*border: 3px solid black;*/
 }
 
-footer h7{
-  font-size: 100%;
-}
-
 footer h8{
   display: block;
   margin: .1vw;
+  font-size: 9pt;
 }
 
 footer p{
