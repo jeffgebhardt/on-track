@@ -2,7 +2,6 @@
 var currentUser = new User();
 var bigChart;
 
-
 var bigChartLocation = document.getElementById('big-Chart-Location');
 
 function getChartData () {
