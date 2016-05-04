@@ -1,7 +1,33 @@
-.four.columns{
-  text-align: center;
+.two.columns{
+  margin: 10px;
   border-style: solid;
   border-width: thin;
+  text-align: center;
+}
+
+.three.columns button{
+  width: 80px;
+  display: inline;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
+  font-size: 7pt;
+}
+
+.three.columns a{
+  text-decoration: none;
+}
+
+.four.columns{
+  margin: 10px;
+  border-style: solid;
+  border-width: thin;
+  text-align: left;
+}
+
+.nine.columns{
+  text-align: left;
 }
 
 .twelve.columns{
@@ -10,20 +36,6 @@
   border-style: solid;
   border-width: thin;
   text-align: center;
-}
-
-.two.columns{
-  margin: 10px;
-  border-style: solid;
-  border-width: thin;
-  text-align: center;
-}
-
-.four.columns{
-  margin: 10px;
-  border-style: solid;
-  border-width: thin;
-  text-align: left;
 }
 
 .container{
@@ -50,4 +62,8 @@ footer h8{
 footer p{
   font-style: italic;
   margin-bottom: 1vw;
+}
+
+section{
+  margin:.3vw;
 }
