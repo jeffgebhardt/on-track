@@ -1,5 +1,6 @@
 var currentUser = new User();
 
+
 function switchPicture() {
   document.getElementById('patient1').src = 'img/activepatient.png';
 }
