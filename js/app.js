@@ -1,7 +1,7 @@
 var currentUser = new User();
 
 function switchPicture() {
-  var patientPicture = document.getElementsById('patient-picture').src = 'img/activepatient.png';
+  document.getElementById('patient1').src = 'img/activepatient.png';
 }
 
 function timeSwitch() {
