@@ -43,10 +43,19 @@
             <p>OnTrack works with you to track your water, protien, and excercise goals during your illness and recovery.  Maintaining adequate hydration and protein is vital to help your body endure your treatment.</p>
             <p>After you register, OnTrack uses the information you provide to set up daily goals.  As you enter information you will see charts about your daily progress on the Daily page.  You can view weekly and monthly progress on the Charts page.</p>
             <p>To continue, please visit the <a href="register.html">Register</a> page.
+
+          </div>
+          <div class="row">
+            <div class="eight columns">
+              <label for="nameInput" id="nameLabel">Your Name</label>
+              <input  type="text" placeholder="Name" id="nameInput" visibility='hidden'>
+              <input id="register-button" class="button u-pull-right" type="submit" value="Register" onclick="window.open('register.html', '_self')">
+              <input id="signin-button" class="button-primary" type="submit" value="Sign In" visibility='hidden'>
+            </div>
           </div>
         </div>
         <!-- Footer info - calls js/app.js
-        _______________________________________________-->
+        ______________________________________________-->
         <footer>
         <div id="quotePara">
         </div>

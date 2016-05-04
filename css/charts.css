@@ -67,3 +67,7 @@ footer p{
   font-style: italic;
   margin-bottom: 1vw;
 }
+
+footer a{
+  display: block;
+}

@@ -37,9 +37,8 @@ function showBigChart() {
       label: 'Daily Goal',
       fillColor: 'rgba(100, 100, 100, 0.2)',
       strokeColor: 'black',
-      borderWidth: 10,
-      pointDotRadius: 0,
-      pointColor: 'black',
+      pointBorderColor: 'rgba(0,0,0,0)',
+      pointColor: 'rgba(0,0,0,0)',
       data: lineChartGoal
     }, {
       label: 'Daily Water Intake',
