@@ -1,3 +1,7 @@
+
+var myDataRef = new Firebase('https://luminous-torch-2017.firebaseio.com/');
+var useRemoteData = true;
+
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -57,21 +61,6 @@ User.prototype.getUserDataFromStorage = function() {
   this.currentDateNumber = today;
   this.currentDate = new Date();
   this.userData = loadUserInfo.userData;
-};
-
-User.prototype.drinkWater = function(amount) {
-  this.dailyWaterIntake += 1;
-  this.updateLocalStorage();
-
-};
-
-User.prototype.eatProtein = function(amount) {
-  this.dailyProteinIntake += amount;
-  this.updateLocalStorage();
-};
-
-User.prototype.exercise = function(amount) {
-  this.updateLocalStorage();
 };
 
 function currentUserDataArray () {
@@ -143,6 +132,7 @@ User.prototype.fakeLastNDays = function(n){
   }
 
   this.userData.push(currentUserDataArray());
+  this.updateLocalStorage();
 };
 
 User.prototype.updateLocalStorage = function() {
@@ -162,6 +152,13 @@ User.prototype.clearCurrentUserStorage = function () {
   }
 };
 
+User.prototype.registerNewUserRemote = function() {
+  console.log('registering new user remote');
+  var usersRef = myDataRef.child("users");
+  usersRef.set( currentUser );
+
+};
+
 User.prototype.registerNewUser = function (){
   console.log('registering new user');
   this.userName = document.getElementById('nameInput').value;
@@ -175,24 +172,15 @@ User.prototype.registerNewUser = function (){
       // console.log('Local Storage for OnTrack User ' + this.userName + ' Exists');
       DlgShow('Sorry ' + this.userName + ', that name is already in use.', 'Do you want to login as <b>' + this.userName + '</b> or change your user name?');
     } else { // local storage does not match just entered userName
+      this.registerNewUserRemote();
       localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
       // console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
       window.open('daily.html', '_self');
     }
   } else // no local storage
   {
+    this.registerNewUserRemote();
     localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
     window.open('daily.html', '_self');
   }
-};
-
-User.prototype.updateHTML = function () {
-
-  document.getElementById('waterFromStorage').innerHTML = 'Your water intake goal is: ' + this.dailyWaterIntakeGoal + '.';
-  document.getElementById('proteinFromStorage').innerHTML = 'Your protein intake goal is: ' + this.dailyProteinIntakeGoal + '.';
-  document.getElementById('exerciseFromStorage').innerHTML = 'Your exercise goal is ' + this.dailyExerciseGoal + ' per day.';
-  document.getElementById('helloMessage').innerHTML = 'Hello ' + this.userName + '.';
-  console.log(this.userName);
-
-  // console.log(currentUser);
 };
