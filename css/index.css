@@ -1,6 +1,28 @@
-.zippyIntro {
-  transition: 1s;
-  transform: translateY(1000);
+#animate-container {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin: 75%
+    width: 100%;
+  }
+}
+
+.patient1 {
+  height: 120px;
+  object-fit: scale-down;
+}
+
+.patient-picture {
+  width: 260px;
+  object-fit: scale-down;
 }
 
 img {
