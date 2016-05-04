@@ -4,14 +4,11 @@
   border-width: thin;
 }
 
-/*.twelve.columns{
-  margin-top: 10px;
+.twelve.columns{
   margin-bottom: 10px;
-  border-style: solid;
-  border-width: thin;
   text-align: center;
   vertical-align: middle;
-}*/
+}
 
 .charts{
   margin: 0 auto;

@@ -1,10 +1,13 @@
-var retrievedData = localStorage.getItem('OnTrack-currentUser');
-var currentUserTwo = JSON.parse(retrievedData);
-var userGreeting = document.getElementById('user-greeting');
-var firstName = currentUserTwo[0];
+var currentUser = new User();
+if (localStorage.getItem('OnTrack-currentUser')){
+  console.log('Local Storage Exists');
+  currentUser.getUserDataFromStorage();
+}
 
-(function greetUser(){
-  var h5 = document.createElement('h5');
-  h5.textContent = 'Hi ' + firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
-  userGreeting.appendChild(h5);
-})();
+var firstName = currentUser.userName;
+function greetUser(){
+  var capital = firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
+  return capital;
+};
+
+document.getElementById('helloMessage').innerHTML = 'Hello ' + greetUser() + '.';
