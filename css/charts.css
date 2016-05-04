@@ -1,21 +1,17 @@
-.chart{
-
-}
-
 .four.columns{
   text-align: center;
   border-style: solid;
   border-width: thin;
 }
 
-.twelve.columns{
+/*.twelve.columns{
   margin-top: 10px;
   margin-bottom: 10px;
   border-style: solid;
   border-width: thin;
   text-align: center;
   vertical-align: middle;
-}
+}*/
 
 .charts{
   margin: 0 auto;
@@ -28,4 +24,27 @@ h4{
   margin-right: 1vw;
   display: inline;
   font-size: 1.2vw;
+}
+
+span{
+  color: white;
+  border-radius: 10px;
+  padding: 4px;
+  margin: 3px;
+}
+
+.black{
+  background-color: black;
+}
+
+.blue{
+  background-color: blue;
+}
+
+.red{
+  background-color: red;
+}
+
+.green{
+  background-color: green;
 }

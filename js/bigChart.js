@@ -1,7 +1,9 @@
-var retrievedData = localStorage.getItem('OnTrack-currentUser');
-var currentUserTwo = JSON.parse(retrievedData);
-var helloMessage = document.getElementById('hello-message');
-helloMessage.innerHTML = currentUserTwo[0];
+// //Local Storage
+// var retrievedData = localStorage.getItem('OnTrack-currentUser');
+// var currentUser = new User();
+//
+// var helloMessage = document.getElementById('hello-message');
+// helloMessage.innerHTML = currentUserTwo[0];
 
 var bigChartLocation = document.getElementById('big-Chart-Location');
 
@@ -18,9 +20,6 @@ var optionsBigChart = {
   scaleGridLineColor: 'black'
 };
 
-//Big Charts
-//----------
-
 function showBigChart() {
   bigChartLocation.innerHTML = '<canvas id="big-Chart"></canvas>';
   var contextBigChart = document.getElementById('big-Chart').getContext('2d');
@@ -29,26 +28,26 @@ function showBigChart() {
     labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
     datasets: [{
       label: 'Daily Goal',
-      fillColor: 'rgba(0,0,0,0)',
+      fillColor: 'rgba(100, 100, 100, 0.2)',
       strokeColor: 'black',
       pointColor: 'black',
       data: lineChartGoal
     }, {
       label: 'Daily Water Intake',
       fillColor: 'rgba(0,0,0,0)',
-      strokeColor: 'rgba(0,0,0,0)',
+      strokeColor: 'blue',
       pointColor: 'blue',
       data: dayWater
     }, {
       label: 'Daily Protein Intake',
       fillColor: 'rgba(0,0,0,0)',
-      strokeColor: 'rgba(0,0,0,0)',
+      strokeColor: 'red',
       pointColor: 'red',
       data: dayProtein
     }, {
       label: 'Daily Exercise',
       fillColor: 'rgba(0,0,0,0)',
-      strokeColor: 'rgba(0,0,0,0)',
+      strokeColor: 'green',
       pointColor: 'green',
       data: dayExercise
     }]
@@ -56,7 +55,15 @@ function showBigChart() {
 
   var bigChart = new Chart(contextBigChart).Line(data, optionsBigChart);
 
-  document.getElementById('generate-legend').innerHTML = bigChart.generateLegend();
+  //document.getElementById('generate-legend').innerHTML = bigChart.generateLegend();
+}
+
+if (localStorage.getItem('OnTrack-currentUser')){
+  console.log('Local Storage Exists');
+  currentUser.getUserDataFromStorage();
+
+} else {
+  window.open('register.html', '_self');
 }
 
 showBigChart();
