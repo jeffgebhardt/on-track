@@ -7,10 +7,11 @@ h4{
 }
 
 .divBorder{
-  border: 2px solid black;
+  /*border: 2px solid black;*/
   margin-bottom: 5%;
   margin-bottom: 5%;
   height: 50%;
+  /*border-radius: 10px;*/
 }
 /*
 ul{
@@ -26,14 +27,15 @@ ul{
    text-align: center;
    border-style: solid;
    border-width: thin;
+   border-radius: 10px;
    height: 500px;
  }
 
  .twelve.columns{
    margin-top: 10px;
    margin-bottom: 10px;
-   border-style: solid;
-   border-width: thin;
+   /*border-style: solid;
+   border-width: thin;*/
    text-align: center;
    vertical-align: middle;
  }
@@ -51,11 +53,24 @@ ul{
    font-size: 1.2vw;
  }
 
- hr {
-     display: flex;
-     height: 1px;
-     border: 0;
-     border-top: 5px solid #333;
-     margin: 1em 0;
-     padding: 0;
+ footer{
+   clear: both;
+   width: 80%;
+   margin: 0 auto;
+   padding: .3vw;
+   margin-bottom: 1vw;
+   text-align: center;
+   flex-direction: column;
+   /*border: 3px solid black;*/
+ }
+
+ footer h8{
+   display: block;
+   margin: .1vw;
+   font-size: 9pt;
+ }
+
+ footer p{
+   font-style: italic;
+   margin-bottom: 1vw;
  }
