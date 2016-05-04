@@ -183,7 +183,7 @@ User.prototype.registerNewUser = function (){
       console.log('new user');
       this.registerNewUserRemote();
       localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
-      currentUser.signIn();
+      currentUser.usedMachine();
 
       // console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
       // window.open('daily.html', '_self');
@@ -192,7 +192,40 @@ User.prototype.registerNewUser = function (){
   {
     this.registerNewUserRemote();
     localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
-    currentUser.signIn();
+    currentUser.usedMachine();
     window.open('daily.html', '_self');
   }
+};
+
+
+
+function go() {
+  var userId = prompt('Username?', 'Guest');
+  checkIfUserExists(userId);
+}
+
+var USERS_LOCATION = 'https://luminous-torch-2017.firebaseio.com/users';
+
+function userExistsCallback(userId, exists) {
+  if (exists) {
+    alert('user ' + userId + ' exists!');
+  } else {
+    alert('user ' + userId + ' does not exist!');
+  }
+}
+
+// Tests to see if /users/<userId> has any data.
+function checkIfUserExists(userId) {
+  var usersRef = new Firebase(USERS_LOCATION);
+  usersRef.child(userId).once('value', function(snapshot) {
+    var exists = (snapshot.val() !== null);
+    userExistsCallback(userId, exists);
+  });
+}
+
+User.prototype.signinUser = function(name){
+  // var usersRef = myDataRef.child('users');
+  // var curUserRef = usersRef.child(this.userName);
+  // curUserRef.set( currentUser );
+  checkIfUserExists(name);
 };
