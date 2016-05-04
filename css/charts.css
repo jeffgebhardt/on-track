@@ -71,3 +71,6 @@ footer p{
 footer a{
   display: block;
 }
+.footerHr{
+  margin-bottom: 5px;
+} 
