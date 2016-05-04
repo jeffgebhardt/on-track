@@ -12,7 +12,7 @@ h4{
   margin-bottom: 5%;
   height: 50%;
 }
-
+/*
 ul{
   list-style: none;
   padding-left: 5%;
@@ -20,11 +20,7 @@ ul{
 
  li{
    text-align: center;
- }
-
-
-
-
+ }*/
 
  .four.columns{
    text-align: center;
@@ -53,4 +49,13 @@ ul{
    margin-right: 1vw;
    display: inline;
    font-size: 1.2vw;
+ }
+
+ hr {
+     display: flex;
+     height: 1px;
+     border: 0;
+     border-top: 5px solid #333;
+     margin: 1em 0;
+     padding: 0;
  }
