@@ -96,7 +96,6 @@ document.getElementById('proteinButton').addEventListener('click', handleProtein
 document.getElementById('exerciseButton').addEventListener('click', handleExercise);
 document.getElementById('exerciseButton').addEventListener('contextmenu', handleExerciseTwo);
 
-
 User.prototype.updateDailyHTML = function () {
   //localStorage
   // var retrievedData = localStorage.getItem('OnTrack-currentUser');

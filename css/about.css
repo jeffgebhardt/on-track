@@ -1,7 +1,3 @@
-.chart{
-
-}
-
 .four.columns{
   text-align: center;
   border-style: solid;
@@ -16,9 +12,6 @@
   text-align: center;
 }
 
-.row{
-}
-
 .two.columns{
   margin: 10px;
   border-style: solid;
@@ -31,4 +24,33 @@
   border-style: solid;
   border-width: thin;
   text-align: left;
+}
+
+.container{
+  border: 1px solid black;
+}
+
+footer{
+  clear: both;
+  width: 80%;
+  margin: 0 auto;
+  padding: .3vw;
+  margin-bottom: 1vw;
+  text-align: center;
+  flex-direction: column;
+  /*border: 3px solid black;*/
+}
+
+footer h7{
+  font-size: 100%;
+}
+
+footer h8{
+  display: block;
+  margin: .1vw;
+}
+
+footer p{
+  font-style: italic;
+  margin-bottom: 1vw;
 }
