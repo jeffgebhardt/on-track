@@ -2,21 +2,20 @@
 var currentUser = new User();
 var bigChart;
 
-// var helloMessage = document.getElementById('hello-message');
-// helloMessage.innerHTML = currentUserTwo[0];
 
 var bigChartLocation = document.getElementById('big-Chart-Location');
 
 function getChartData () {
   console.log('Running getChartData');
   for (var i = 0; i < 5; i++) {
-    console.log(currentUser.userData.length + 'Running' + i);
+    //console.log(currentUser.userData.length + 'Running' + i);
     dayWater.push((currentUser.userData[i][2] / currentUser.userData[i][1]) * 100);
+    dayProtein.push((currentUser.userData[i][4] / currentUser.userData[i][3]) * 100);
+    dayExercise.push((currentUser.userData[i][6] / currentUser.userData[i][5]) * 100);
   }
 };
 
-
-var lineChartGoal = [100, 100, 100, 100, 100];
+var lineChartGoal = [100, 100, 100, 100, 100,];
 var dayWater = [];
 var dayProtein = [];
 var dayExercise = [];
@@ -39,6 +38,8 @@ function showBigChart() {
       label: 'Daily Goal',
       fillColor: 'rgba(100, 100, 100, 0.2)',
       strokeColor: 'black',
+      borderWidth: 10,
+      pointDotRadius: 0,
       pointColor: 'black',
       data: lineChartGoal
     }, {
@@ -64,7 +65,6 @@ function showBigChart() {
 
   bigChart = new Chart(contextBigChart).Line(data, optionsBigChart);
 
-  //document.getElementById('generate-legend').innerHTML = bigChart.generateLegend();
 }
 
 if (localStorage.getItem('OnTrack-currentUser')){
@@ -79,3 +79,6 @@ currentUser.fakeLastNDays(5);
 
 getChartData();
 showBigChart();
+
+var helloMessage = document.getElementById('hello-message');
+helloMessage.innerHTML = 'Hello ' + currentUser.userName + '.';
