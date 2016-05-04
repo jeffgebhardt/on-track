@@ -1,8 +1,14 @@
 var currentUser = new User();
-
+var displayImage = document.getElementById('pictures');
+var slideShow = ['img/nonactivepatient.png','img/activepatient.png','img/malepatiendoc2.png','img/nonactivepatient3.png','img/activepatient3.jpg'];
+var displaying = 0;
 
 function switchPicture() {
-  document.getElementById('patient1').src = 'img/activepatient.png';
+  displaying++;
+  displaying = displaying % 5;
+  displayImage.src = '';
+  displayImage.src = slideShow[displaying];
+
 }
 
 function timeSwitch() {
