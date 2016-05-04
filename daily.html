@@ -44,17 +44,22 @@
           </div>
         </div>
       </header>
+    <div class="row">
+      <div class="twelve columns offset-by-4">
+        <hr>
+      </div>
+    </div>
       <!-- Water Intake, Protein Intake and Exercise -->
     <div class="row">
       <!-- Water Intake -->
       <div class="four columns">
         <div class="divBorder">
           <h3>Water Intake</h3>
-          <p id="waterFromStorage"></p>
-            <div id="waterToPage">
-            </div>
             <div>
               <button id="waterButton">Drank One Glass</button>
+            </div>
+            <p id="waterFromStorage"></p>
+            <div id="waterToPage">
             </div>
         </div>
           <div class="six columns offset-by-three">
@@ -70,12 +75,12 @@
       <div class="four columns">
         <div class="divBorder">
           <h3>Protein Intake</h3>
-          <p id="proteinFromStorage"></p>
-        <div id="proteinToPage">
-        </div>
         <div>
+          <button type="submit" id="proteinButton">Grams of Protein</button>
           <input id="proteinInput" type="number" name="proteinInput" required/>
-          <button type="submit" id="proteinButton">Ate Some Meat</button>
+        </div>
+        <p id="proteinFromStorage"></p>
+        <div id="proteinToPage">
         </div>
       </div>
       <!-- <div class="four columns"> -->
@@ -93,18 +98,13 @@
       <div class="four columns">
         <div class="divBorder">
           <h3>Exercise</h3>
+          <div>
+            <button id="exerciseButton">Walked This Many Minutes</button>
+            <input id="exerciseInput" type="number" name="exerciseInput"/>
+          </div>
           <p id ="exerciseFromStorage"></p>
           <div id="exerciseToPage">
           </div>
-          <div>
-            <input id="exerciseInput" type="number" name="exerciseInput"/>
-            <button id="exerciseButton">Walked This Many Minutes</button>
-          </div>
-            <!-- <ul>
-              <li><input type="checkbox">10 Minute Walk</li>
-              <li><input type="checkbox">10 Minute Walk</li>
-              <li><input type="checkbox">10 Minute Walk</li>
-            </ul> -->
         </div>
         <!-- <div class="four columns"> -->
       <div class="six columns offset-by-three">
