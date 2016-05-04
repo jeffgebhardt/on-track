@@ -1,19 +1,12 @@
-// var retrievedData = localStorage.getItem('OnTrack-currentUser');
-// var currentUserTwo = JSON.parse(retrievedData);
-
+var currentUser = new User();
+var currentUserData = [5, 80, 5];
 var currentUserTwo = [3,90,5];
-var currentUserData = [5,70,5];
-// var userGreeting = document.getElementById('user-greeting');
-// var firstName = currentUserTwo[0];
 var waterLocation = document.getElementById('water-location');
 var proteinLocation = document.getElementById('protein-location');
 var exerciseLocation = document.getElementById('exercise-location');
-// var initialPercentages = [
-//   parseInt(currentUserTwo[2]),
-//   parseInt(currentUserTwo[3]),
-//   parseInt(currentUserTwo[4]),
-// ];
-var finishedPercentages = [];
+var waterChart;
+var proteinChart;
+var exerciseChart;
 
 var options = {
   responsive: true,
@@ -24,17 +17,13 @@ var options = {
   scaleStartValue: 0
 };
 
+// var userGreeting = document.getElementById('user-greeting');
+// var firstName = currentUserTwo[0];
 // (function greetUser(){
 //   var h5 = document.createElement('h5');
 //   h5.textContent = 'Hi ' + firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
 //   userGreeting.appendChild(h5);
 // })();
-
-(function getPercentages (){
-  for (i = 0; i < currentUserData.length; i++){
-    finishedPercentages.push(Math.round((currentUserData[i] / currentUserTwo[i] * 100)));
-  }
-})();
 
 //Charts
 
@@ -42,7 +31,7 @@ function showWaterChart(){
   waterLocation.innerHTML = '<canvas id="water-chart"></canvas>';
   var contextWater = document.getElementById('water-chart').getContext('2d');
 
-  var todayWater = finishedPercentages[0];
+  var todayWater = rightNowData[0];
   var conditionalFill;
   var conditionalStroke;
   if (todayWater < 100) {
@@ -70,14 +59,14 @@ function showWaterChart(){
       }]
   };
 
-  new Chart(contextWater).Bar(data, options);
+  waterChart = new Chart(contextWater).Bar(data, options);
 }
 
 function showProteinChart(){
   proteinLocation.innerHTML = '<canvas id="protein-chart"></canvas>';
   var contextProtein = document.getElementById('protein-chart').getContext('2d');
 
-  var todayProtein = finishedPercentages[1];
+  var todayProtein = rightNowData[1];
   var conditionalFill;
   var conditionalStroke;
   if (todayProtein < 100) {
@@ -105,14 +94,14 @@ function showProteinChart(){
       }]
   };
 
-  var proteinChart = new Chart(contextProtein).Bar(data, options);
+  proteinChart = new Chart(contextProtein).Bar(data, options);
 }
 
 function showExerciseChart(){
   exerciseLocation.innerHTML = '<canvas id="exercise-chart"></canvas>';
   var contextExercise = document.getElementById('exercise-chart').getContext('2d');
 
-  var todayExercise = finishedPercentages[2];
+  var todayExercise = rightNowData[2];
   var conditionalFill;
   var conditionalStroke;
   if (todayExercise < 100) {
@@ -140,8 +129,18 @@ function showExerciseChart(){
       }]
   };
 
-  var exerciseChart = new Chart(contextExercise).Bar(data, options);
+  exerciseChart = new Chart(contextExercise).Bar(data, options);
 }
+
+if (localStorage.getItem('OnTrack-currentUser')){
+  console.log('Local Storage Exists');
+  currentUser.getUserDataFromStorage();
+} else {
+  window.open('register.html', '_self');
+}
+var rightNowData = [(currentUser.dailyWaterIntake / currentUser.dailyWaterIntakeGoal) * 100,
+    (currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100,
+    (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100];
 
 showWaterChart();
 showProteinChart();
