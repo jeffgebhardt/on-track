@@ -3,7 +3,7 @@
   transform: translateY(1000);
 }
 
-img:hover {
+img {
   transform: rotate3d(1,1,1,360deg) scale(0.75) translateY(-25px);
 }
 
