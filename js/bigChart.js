@@ -37,7 +37,7 @@ function showBigChart() {
       label: 'Daily Goal',
       fillColor: 'rgba(100, 100, 100, 0.2)',
       strokeColor: 'black',
-      pointColor: 'rgba(0,0,0,0)',
+      pointColor: 'black',
       data: lineChartGoal
     }, {
       label: 'Daily Water Intake',
@@ -85,5 +85,17 @@ currentUser.fakeLastNDays(5);
 getChartData();
 showBigChart();
 
-var helloMessage = document.getElementById('hello-message');
-helloMessage.innerHTML = 'Hello ' + currentUser.userName + '.';
+// var helloMessage = document.getElementById('hello-message');
+// helloMessage.innerHTML = 'Hello ' + currentUser.userName + '.';
+
+function buttonHandler(e) {
+  var targetEl = e.target;
+  e.preventDefault();
+  switch (e.target.id) {
+  case 'signout-button':
+    currentUser.userSignedOut();
+    break;
+
+  }
+}
+document.getElementById('signout-button').addEventListener('click',buttonHandler, false);

@@ -155,3 +155,15 @@ function greetUser(){
 };
 
 document.getElementById('helloMessage').innerHTML = 'Hello ' + greetUser() + '.';
+
+function buttonHandler(e) {
+  var targetEl = e.target;
+  e.preventDefault();
+  switch (e.target.id) {
+  case 'signout-button':
+    currentUser.userSignedOut();
+    break;
+
+  }
+}
+document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
