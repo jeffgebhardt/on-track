@@ -1,11 +1,28 @@
+.three.columns button{
+  width: 80px;
+  display: inline;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
+  font-size: 7pt;
+}
+
+.three.columns a{
+  text-decoration: none;
+}
+
 .four.columns{
   text-align: center;
   border-style: solid;
   border-width: thin;
 }
 
+.nine.columns{
+  text-align: left;
+}
+
 .twelve.columns{
-  margin-bottom: 10px;
   text-align: center;
   vertical-align: middle;
 }
@@ -46,6 +63,10 @@ span{
   background-color: green;
 }
 
+.footerHr{
+  margin: 1.8vw;
+}
+
 footer{
   clear: both;
   width: 80%;
@@ -70,7 +91,5 @@ footer p{
 
 footer a{
   display: block;
+  font-size: 9pt;
 }
-.footerHr{
-  margin-bottom: 5px;
-} 
