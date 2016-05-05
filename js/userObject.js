@@ -143,6 +143,7 @@ User.prototype.updateLocalStorage = function() {
   currentUser.updateUserData();
   console.log('afte updating local storage' + currentUser.userName);
   localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
+
   if (useRemoteData){
     var usersRef = myDataRef.child('users');
     console.log('trying to access remote user: ' + currentUser.userName);

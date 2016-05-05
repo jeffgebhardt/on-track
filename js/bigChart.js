@@ -37,7 +37,6 @@ function showBigChart() {
       label: 'Daily Goal',
       fillColor: 'rgba(100, 100, 100, 0.2)',
       strokeColor: 'black',
-      pointBorderColor: 'rgba(0,0,0,0)',
       pointColor: 'rgba(0,0,0,0)',
       data: lineChartGoal
     }, {
