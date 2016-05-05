@@ -110,3 +110,10 @@ h3, h5{
 p{
   font-family: 'Quattrocento', serif;
 }
+
+h5{
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #545454;
+  font-family: Quattrocento;
+}
