@@ -138,7 +138,7 @@ function buttonHandler(e) {
 
   }
 }
-// document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
+document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
 
 if (localStorage.getItem('OnTrack-currentUser')){
   console.log('Local Storage Exists');
