@@ -1,9 +1,18 @@
-h3{
-  text-align: center;
+body{
+  background-color: #f1f1f1;
 }
 
-h4{
+h3, h4, h5{
   text-align: center;
+  font-family: 'Quicksand', sans-serif;
+}
+
+h3, h5{
+  font-weight: 400;
+}
+
+p{
+  font-family: 'Quattrocento', serif;
 }
 
 .divBorder{
