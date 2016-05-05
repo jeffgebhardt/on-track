@@ -55,7 +55,6 @@ function handleProtein(e){
   protein.textContent = null;
   // var proteinValue = parseInt(event.target.proteinInput.value);
   // var proteinValue = parseInt(document.getElementById('proteinInput').value);
-  currentUser.eatProtein();
   proteinChart.datasets[0].bars[0].value = (currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100;
   conditionalColors(proteinChart);
   proteinChart.update();
