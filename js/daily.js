@@ -19,64 +19,75 @@ function conditionalColors(chartName){
   }
 }
 
-function handleWater(){
+function handleWater(e){
+  switch (e.target.id) {
+  case 'water-one':
+    currentUser.drinkWater(1);
+    break;
+  case 'water-three':
+    currentUser.drinkWater(3);
+    break;
+  case 'water-five':
+    currentUser.drinkWater(5);
+    break;
+  }
   water.textContent = null;
-  currentUser.drinkWater();
   waterChart.datasets[0].bars[0].value = (currentUser.dailyWaterIntake / currentUser.dailyWaterIntakeGoal) * 100;
   conditionalColors(waterChart);
   waterChart.update();
-  //console.log('Cups of water consumed: ' + dayOneArray[0]);
   var p = document.createElement('p');
   water.appendChild(p);
   p.textContent = currentUser.dailyWaterIntake + ' glasses of water consumed today.';
 }
 
-function handleProtein(){
+function handleProtein(e){
+  switch (e.target.id) {
+  case 'protein-one':
+    currentUser.eatProtein(1);
+    break;
+  case 'protein-three':
+    currentUser.eatProtein(3);
+    break;
+  case 'protein-five':
+    currentUser.eatProtein(5);
+    break;
+  }
   protein.textContent = null;
-  //  var proteinValue = parseInt(event.target.proteinInput.value);
-  var proteinValue = parseInt(document.getElementById('proteinInput').value);
-  currentUser.eatProtein(proteinValue);
+
   proteinChart.datasets[0].bars[0].value = (currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100;
   conditionalColors(proteinChart);
   proteinChart.update();
-  //console.log('Amount of protein consumed: ' + dayOneArray[1]);
   var p = document.createElement('p');
   protein.appendChild(p);
   p.textContent = currentUser.dailyProteinIntake + ' grams of protein consumed today.';
 }
 
-function handleExercise(){
+function handleExercise(e){
+  switch (e.target.id) {
+  case 'exercise-one':
+    currentUser.doExercise(1);
+    break;
+  case 'exercise-three':
+    currentUser.doExercise(3);
+    break;
+  case 'exercise-five':
+    currentUser.doExercise(5);
+    break;
+  }
   exercise.textContent = null;
-  //  var exerciseValue = parseInt(event.target.exerciseInput.value);
-  var exerciseValue = parseInt(document.getElementById('exerciseInput').value);
-  currentUser.doExercise(exerciseValue);
+  // var exerciseValue = parseInt(event.target.exerciseInput.value);
+  // var exerciseValue = parseInt(document.getElementById('exerciseInput').value);
+  // currentUser.doExercise();
   exerciseChart.datasets[0].bars[0].value = (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100;
-  // exerciseChart.datasets[0].bars[0].value = ' ';
   conditionalColors(exerciseChart);
   exerciseChart.update();
-  //console.log('Minutes of activity today: ' + dayOneArray[1]);
-  var p = document.createElement('p');
-  exercise.appendChild(p);
-  p.textContent = currentUser.dailyExercise + ' minutes of activity today.';
-}
-
-function handleExerciseTwo(){
-  exercise.textContent = null;
-  //  var exerciseValue = parseInt(event.target.exerciseInput.value);
-  var exerciseValue = parseInt(document.getElementById('exerciseInput').value);
-  currentUser.doExercise(exerciseValue);
-  // exerciseChart.datasets[0].bars[0].value = (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100;
-  exerciseChart.datasets[0].bars[0].value = ' ';
-  conditionalColors(exerciseChart);
-  exerciseChart.update();
-  //console.log('Minutes of activity today: ' + dayOneArray[1]);
   var p = document.createElement('p');
   exercise.appendChild(p);
   p.textContent = currentUser.dailyExercise + ' minutes of activity today.';
 }
 
 User.prototype.drinkWater = function(amount) {
-  this.dailyWaterIntake += 1;
+  this.dailyWaterIntake += amount;
   this.updateLocalStorage();
 
 };
@@ -91,10 +102,17 @@ User.prototype.doExercise = function(amount) {
   this.updateLocalStorage();
 };
 
-document.getElementById('waterButton').addEventListener('click', handleWater);
-document.getElementById('proteinButton').addEventListener('click', handleProtein);
-document.getElementById('exerciseButton').addEventListener('click', handleExercise);
-document.getElementById('exerciseButton').addEventListener('contextmenu', handleExerciseTwo);
+document.getElementById('water-one').addEventListener('click', handleWater);
+document.getElementById('water-three').addEventListener('click', handleWater);
+document.getElementById('water-five').addEventListener('click', handleWater);
+
+document.getElementById('protein-one').addEventListener('click', handleProtein);
+document.getElementById('protein-three').addEventListener('click', handleProtein);
+document.getElementById('protein-five').addEventListener('click', handleProtein);
+
+document.getElementById('exercise-one').addEventListener('click', handleExercise);
+document.getElementById('exercise-three').addEventListener('click', handleExercise);
+document.getElementById('exercise-five').addEventListener('click', handleExercise);
 
 User.prototype.updateDailyHTML = function () {
   //localStorage
@@ -110,6 +128,18 @@ User.prototype.updateDailyHTML = function () {
   console.log(currentUser);
 };
 
+function buttonHandler(e) {
+  var targetEl = e.target;
+  e.preventDefault();
+  switch (e.target.id) {
+  case 'signout-button':
+    currentUser.userSignedOut();
+    break;
+
+  }
+}
+document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
+
 if (localStorage.getItem('OnTrack-currentUser')){
   console.log('Local Storage Exists');
   currentUser.getUserDataFromStorage();
@@ -118,3 +148,22 @@ if (localStorage.getItem('OnTrack-currentUser')){
 } else {
   window.open('register.html', '_self');
 }
+var firstName = currentUser.userName;
+function greetUser(){
+  var capital = firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
+  return capital;
+};
+
+document.getElementById('helloMessage').innerHTML = 'Hello ' + greetUser() + '.';
+
+function buttonHandler(e) {
+  var targetEl = e.target;
+  e.preventDefault();
+  switch (e.target.id) {
+  case 'signout-button':
+    currentUser.userSignedOut();
+    break;
+
+  }
+}
+document.getElementById('signout-button').addEventListener('click',buttonHandler, false);

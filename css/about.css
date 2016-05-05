@@ -1,33 +1,42 @@
-.four.columns{
+.two.columns{
+  margin: 10px;
   text-align: center;
-  border-style: solid;
-  border-width: thin;
+}
+
+.three.columns button{
+  width: 80px;
+  display: inline;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
+  font-size: 7pt;
+}
+
+.six.columns{
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 5%;
+}
+
+.three.columns a{
+  text-decoration: none;
+}
+
+.four.columns{
+  margin: 10px;
+  text-align: left;
+}
+
+.nine.columns{
+  text-align: left;
 }
 
 .twelve.columns{
   margin-top: 10px;
   margin-bottom: 10px;
-  border-style: solid;
-  border-width: thin;
   text-align: center;
-}
-
-.two.columns{
-  margin: 10px;
-  border-style: solid;
-  border-width: thin;
-  text-align: center;
-}
-
-.four.columns{
-  margin: 10px;
-  border-style: solid;
-  border-width: thin;
-  text-align: left;
-}
-
-.container{
-  border: 1px solid black;
 }
 
 footer{
@@ -38,7 +47,6 @@ footer{
   margin-bottom: 1vw;
   text-align: center;
   flex-direction: column;
-  /*border: 3px solid black;*/
 }
 
 footer h8{
@@ -50,4 +58,12 @@ footer h8{
 footer p{
   font-style: italic;
   margin-bottom: 1vw;
+}
+
+section{
+  margin:.3vw;
+}
+
+.float{
+  float: left;
 }

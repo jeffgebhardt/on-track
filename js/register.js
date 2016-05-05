@@ -50,7 +50,19 @@ function DlgShow(dlgHeading, dlgMessage)
 
 //document.getElementById('register-button').addEventListener('click', clickHandler, false);
 
-document.getElementById('register-button').addEventListener('click', buttonHandler, false);
+// function buttonHandler(e) {
+//   var targetEl = e.target;
+//   e.preventDefault();
+//   switch (e.target.id) {
+//   case 'signout-button':
+//     console.log('signout-button pressed');
+//     currentUser.userSignedOut();
+//     break;
+//
+//   }
+// }
+// document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
+document.getElementById('register-button').addEventListener('click',buttonHandler, false);
 
 if (localStorage.getItem('OnTrack-currentUser')){
   console.log('Local Storage Exists');

@@ -284,7 +284,18 @@ label > .label-body {
   margin-left: .5rem;
   font-weight: normal; }
 
-
+input.small {
+  height: 22px;
+  margin-top: 15px;
+  margin-left: 5px;
+}
+button.small {
+  height: 22px;
+  padding: 0 15px;
+  margin-top: 15px;
+  line-height: normal;
+  margin-left: 5px;
+}
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 ul {

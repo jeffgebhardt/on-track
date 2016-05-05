@@ -1,9 +1,18 @@
-h3{
-  text-align: center;
+body{
+  background-color: #f1f1f1;
 }
 
-h4{
+h3, h4, h5{
   text-align: center;
+  font-family: 'Quicksand', sans-serif;
+}
+
+h3, h5{
+  font-weight: 400;
+}
+
+p{
+  font-family: 'Quattrocento', serif;
 }
 
 .divBorder{
@@ -13,15 +22,25 @@ h4{
   height: 50%;
   /*border-radius: 10px;*/
 }
-/*
-ul{
-  list-style: none;
-  padding-left: 5%;
+
+.divBorder input{
+  margin-left: .8vw;
+  margin-right: .8vw;
 }
 
- li{
-   text-align: center;
- }*/
+.three.columns button{
+  width: 80px;
+  display: inline;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
+  font-size: 7pt;
+}
+
+.three.columns a{
+  text-decoration: none;
+}
 
  .four.columns{
    text-align: center;
@@ -31,13 +50,8 @@ ul{
    height: 500px;
  }
 
- .twelve.columns{
-   margin-top: 10px;
-   margin-bottom: 10px;
-   /*border-style: solid;
-   border-width: thin;*/
-   text-align: center;
-   vertical-align: middle;
+ .nine.columns{
+   text-align: left;
  }
 
  .charts{
@@ -59,6 +73,7 @@ ul{
    margin: 0 auto;
    padding: .3vw;
    margin-bottom: 1vw;
+   margin-top: 1.8vw;
    text-align: center;
    flex-direction: column;
    /*border: 3px solid black;*/
@@ -73,4 +88,13 @@ ul{
  footer p{
    font-style: italic;
    margin-bottom: 1vw;
+ }
+
+ footer a{
+   display: block;
+   font-size: 9pt;
+ }
+
+ .footerHr{
+   margin-bottom: 5px;
  }

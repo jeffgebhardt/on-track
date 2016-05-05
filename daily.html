@@ -21,6 +21,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quattrocento:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/daily.css">
 
 
@@ -31,24 +33,19 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <header>
-        <div class="row">
-          <div class="three columns">
-            <h5 id="helloMessage"></h5>
-            <a href="register.html"><button>Sign Out</button></a>
-          </div>
-          <div class="six columns">
-            <img src="img/logoTest.png"/>
-          </div>
-          <div class="three columns">
-            <a href="charts.html"><button href="charts.html">Charts</button></a>
-          </div>
+      <div class="row">
+        <div class="nine columns">
+          <a href="index.html"><img src="img/logoTest.png"/></a>
         </div>
-      </header>
-    <div class="row">
-      <div class="twelve columns offset-by-4">
-        <hr>
+        <div class="three columns">
+          <h5 id="helloMessage"></h5>
+          <a href="charts.html"><button href="charts.html">Charts</button></a>
+          <button id="signout-button">Sign Out</button>
+          <a href="register.html" id="signout-button"><button>Sign Out</button></a>
+        </div>
       </div>
-    </div>
+    </header>
+    <hr>
       <!-- Water Intake, Protein Intake and Exercise -->
     <div class="row">
       <!-- Water Intake -->
@@ -56,42 +53,43 @@
         <div class="divBorder">
           <h3>Water Intake</h3>
             <div>
-              <button id="waterButton">Drank One Glass</button>
+              <input type="image" src="img/water.png" id="water-one"></input>
+              <input type="image" src="img/water3x.png" id="water-three"></input>
+              <input type="image" src="img/water5x.png" id="water-five"></input>
             </div>
             <p id="waterFromStorage"></p>
             <div id="waterToPage">
             </div>
         </div>
-          <div class="six columns offset-by-three">
-            <h5>Water</h5>
-            <div class="charts" id="water-location">
-            </div>
-            <h4>You</h4>
-            <h4>Goal</h4>
+        <div class="six columns offset-by-three">
+          <h5>Water</h5>
+          <div class="charts" id="water-location">
           </div>
+          <h4>You</h4>
+          <h4>Goal</h4>
+        </div>
       </div>
       <!-- End Water Intake -->
       <!-- Protein Intake -->
       <div class="four columns">
         <div class="divBorder">
           <h3>Protein Intake</h3>
-        <div>
-          <button type="submit" id="proteinButton">Grams of Protein</button>
-          <input id="proteinInput" type="number" name="proteinInput" required/>
+          <div>
+            <input type="image" src="img/protein.png" id="protein-one"></input>
+            <input type="image" src="img/protein3x.png" id="protein-three"></input>
+            <input type="image" src="img/protein5x.png" id="protein-five"></input>
+          </div>
+          <p id="proteinFromStorage"></p>
+          <div id="proteinToPage">
+          </div>
         </div>
-        <p id="proteinFromStorage"></p>
-        <div id="proteinToPage">
+        <div class="six columns offset-by-three">
+          <h5>Protein</h5>
+          <div class="charts" id="protein-location">
+          </div>
+          <h4>You</h4>
+          <h4>Goal</h4>
         </div>
-      </div>
-      <!-- <div class="four columns"> -->
-      <div class="six columns offset-by-three">
-      <h5>Protein</h5>
-      <div class="charts" id="protein-location">
-      </div>
-      <h4>You</h4>
-      <h4>Goal</h4>
-    </div>
-    <!-- </div> -->
       </div>
       <!-- End Protein Intake -->
       <!-- Exercise -->
@@ -99,37 +97,38 @@
         <div class="divBorder">
           <h3>Exercise</h3>
           <div>
-            <button id="exerciseButton">Walked This Many Minutes</button>
-            <input id="exerciseInput" type="number" name="exerciseInput"/>
+            <input type="image" src="img/exercise.png" id="exercise-one"></input>
+            <input type="image" src="img/exercise3x.png" id="exercise-three"></input>
+            <input type="image" src="img/exercise5x.png" id="exercise-five" name="exerciseInput" value="0"></input>
           </div>
           <p id ="exerciseFromStorage"></p>
           <div id="exerciseToPage">
           </div>
         </div>
-        <!-- <div class="four columns"> -->
-      <div class="six columns offset-by-three">
-      <h5>Exercise</h5>
-      <div class="charts" id="exercise-location">
-      </div>
-      <h4>You</h4>
-      <h4>Goal</h4>
-    </div>
-    <!-- </div> -->
+        <div class="six columns offset-by-three">
+          <h5>Exercise</h5>
+          <div class="charts" id="exercise-location">
+          </div>
+          <h4>You</h4>
+          <h4>Goal</h4>
+        </div>
       </div>
       <!-- End Exercise -->
     </div>
     <!-- End Water Intake, Protein Intake and Exercise -->
-    </div
+
     <!-- Footer info - calls js/app.js
     _______________________________________________-->
+    <hr class="footerHr">
     <footer>
-    <div id="quotePara">
-    </div>
-        <h8 class="copyRight">&#169; 2016 OnTrack. All Rights Reserved. </h8>
-  </footer>
+      <div id="quotePara">
+      </div>
+      <h8 class="copyRight">&#169; 2016 OnTrack. All Rights Reserved. </h8>
+      <a href="about.html">About Us</a>
+    </footer>
 
-      <!-- Container Closing Div in Next Line -->
-    </div>
+      <!-- .container Closing Div in Next Line -->
+  </div>
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

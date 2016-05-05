@@ -1,4 +1,4 @@
-#animate-container {
+/*#animate-container {
   animation-duration: 3s;
   animation-name: slidein;
 }
@@ -12,6 +12,21 @@
   to {
     margin: 75%
     width: 100%;
+  }
+}*/
+
+#animate-signin{
+  animation-duration: 2s;
+  animation-name: signin;
+}
+
+@keyframes signin{
+  from {
+    opacity: 0;
+      }
+
+  to {
+    opacity: 1;
   }
 }
 
