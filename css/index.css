@@ -1,6 +1,8 @@
-/*#animate-container {
+#animate-container {
   animation-duration: 3s;
   animation-name: slidein;
+  z-index: 50;
+  text-align: left;
 }
 
 @keyframes slidein {
@@ -10,10 +12,9 @@
   }
 
   to {
-    margin: 75%
     width: 100%;
   }
-}*/
+}
 /*
 #animate-signin{
   animation-duration: 2s;
@@ -25,7 +26,7 @@
     opacity: 0;
       }
 
-  to {
+  to {n
     opacity: 1;
   }
 }*/
@@ -43,18 +44,24 @@ a{
   text-decoration: none;
 }
 
+#button-bar-div{
+  visibility: hidden;
+}
+
 input[type="text"],
 input[type="password"]{
   margin: 0px;
   width: 85%;
   font-size: 9pt;
   height: 3vh;
-  padding: 0px;
-  visibility: hidden;
+  padding: 5px;
+  background-color: inherit;
 }
 
 #animate-signin{
   float: right;
+  visibility: hidden;
+
 }
 
 .patient1 {
@@ -118,4 +125,9 @@ h3, h5{
 
 p{
   font-family: 'Quattrocento', serif;
+}
+
+#pictures{
+  height: 250px;
+  width: 250px;
 }

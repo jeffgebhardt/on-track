@@ -1,6 +1,6 @@
 
 var myDataRef = new Firebase('https://luminous-torch-2017.firebaseio.com/');
-var useRemoteData = false;
+var useRemoteData = true;
 
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
@@ -223,25 +223,25 @@ User.prototype.signinRemoteUser = function (userObject){
 
 User.prototype.registerNewUserRemote = function() {
   if (useRemoteData == true){
-    var ref = new Firebase("https://luminous-torch-2017.firebaseio.com");
+    var ref = new Firebase('https://luminous-torch-2017.firebaseio.com');
     ref.createUser({
       email    : document.getElementById('emailInput').value,
       password : document.getElementById('passwordInput').value
     }, function(error, userData) {
       if (error) {
-        console.log("Error creating user:", error);
+        console.log('Error creating user:', error);
         alert('User with that email already exists - please log in ');
       } else {
-        console.log("Successfully created user account with uid:", userData.uid);
+        console.log('Successfully created user account with uid:', userData.uid);
         console.log('new user');
         ref.authWithPassword({
           email    :  document.getElementById('emailInput').value,
           password : document.getElementById('passwordInput').value
         }, function(error, authData) {
           if (error) {
-            console.log("Login Failed!", error);
+            console.log('Login Failed!', error);
           } else {
-            console.log("Authenticated successfully with payload:", authData.uid);
+            console.log('Authenticated successfully with payload:', authData.uid);
             currentUser.userUID = authData.uid;
             console.log(currentUser.userUID + ' ' + authData.uid);
             if (currentUser.userUID != currentUser.userName){
@@ -350,7 +350,8 @@ User.prototype.signinUser = function(name, password){
         usersRef.child(currentUser.userUID).once('value', function(snapshot) {
           if (snapshot.val() !== null){
             currentUser.signinRemoteUser(snapshot.val());
-          } else  {
+          } else
+          {
             window.open('register.html', '_self');
           }
         });
