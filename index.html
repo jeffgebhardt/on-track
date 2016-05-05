@@ -30,6 +30,11 @@
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <div class="container">
         <div class="row">
+          <div class="twelve columns">
+            <button id="signin-button" class="small button-primary u-pull-right" type="submit" value="Sign In">Sign In</button>
+            <input class="small u-pull-right" type="text" placeholder="password" id="passwordInput" >
+            <input class="small u-pull-right" type="text" placeholder="email@email.com" id="emailInput" >
+          </div>
           <div class="twelve columns offset-by-two" id="animate-container">
               <div id="zippyIntro">
                 <h1>Welcome to <img src="img/logoTest.png"/></h1>
@@ -46,14 +51,14 @@
 
           </div>
           <div class="row">
-            <div class="eight columns">
-              <label for="nameInput" id="nameLabel">Your Name</label>
-              <input  type="text" placeholder="Name" id="nameInput" visibility='hidden'>
-              <input id="register-button" class="button u-pull-right" type="submit" value="Register" onclick="window.open('register.html', '_self')">
-              <input id="signin-button" class="button-primary" type="submit" value="Sign In" visibility='hidden'>
+            <div class="seven columns u-pull-right">
+              <input id="register-button" class="button" type="submit" value="Register" onclick="window.open('register.html', '_self')">
+              <!-- <label for="nameInput" id="nameLabel"></label> -->
             </div>
           </div>
         </div>
+      </div>
+    </div>
         <!-- Footer info - calls js/app.js
         ______________________________________________-->
         <footer>

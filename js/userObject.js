@@ -15,6 +15,7 @@ function getDateNumFromDate(dateObject){
 };
 
 function User(){
+  this.userUID = '';
   this.userName = '';
   this.userEmail = '';
   this.dailyWaterIntakeGoal = 0;
@@ -90,7 +91,7 @@ User.prototype.updateUserData = function(){
 
     var lastUserData = loadUserData[loadUserData.length - 1];
     if (lastUserData[0] === currentUser.currentDateNumber){
-      // console.log('we have a match');
+      console.log('we have a match');
       // we have a match - current date is same as last date stored.
       loadUserData.pop();
       loadUserData.push(currentUserDataArray());
@@ -137,11 +138,17 @@ User.prototype.fakeLastNDays = function(n){
 
 User.prototype.updateLocalStorage = function() {
 // update userInfo and userData to local storage
+  console.log('before updating local storage' + currentUser.userName);
+
   currentUser.updateUserData();
+  console.log('afte updating local storage' + currentUser.userName);
   localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
-  var usersRef = myDataRef.child('users');
-  var curUserRef = usersRef.child(this.userName);
-  curUserRef.set( currentUser );
+  if (useRemoteData){
+    var usersRef = myDataRef.child('users');
+    console.log('trying to access remote user: ' + currentUser.userName);
+    var curUserRef = usersRef.child(currentUser.userName);
+    curUserRef.set( currentUser );
+  }
 };
 
 // one or more functions to get an array of chart data from the localStorage userData.
@@ -154,6 +161,15 @@ User.prototype.clearCurrentUserStorage = function () {
   }
 };
 
+User.prototype.userSignedIn = function(){
+  localStorage.setItem('OnTrack-SignedIn', true);
+};
+
+User.prototype.userSignedOut = function(){
+  localStorage.removeItem('OnTrack-SignedIn');
+  window.open('index.html', '_self');
+};
+
 User.prototype.usedMachine = function(){
   localStorage.setItem('OnTrack', true);
 };
@@ -162,81 +178,111 @@ User.prototype.newMachine = function(){
   localStorage.removeItem('OnTrack');
 };
 
-User.prototype.signinRemoteUser = function (name){
+User.prototype.signinRemoteUser = function (userObject){
+  console.log('user object ' + userObject);
   this.clearCurrentUserStorage();
   var loadUserInfo = null;
-  console.log('signing in remote user: ' + name);
-  myDataRef.child('users/' + name).on('value', function(snapshot) {
-    console.log(snapshot.val());
-    loadUserInfo = snapshot.val();
-    currentUser.userName = loadUserInfo.userName;
-    currentUser.userEmail = loadUserInfo.userEmail;
-    currentUser.dailyWaterIntakeGoal = parseInt(loadUserInfo.dailyWaterIntakeGoal);
-    currentUser.dailyProteinIntakeGoal = parseInt(loadUserInfo.dailyProteinIntakeGoal);
-    currentUser.dailyExerciseGoal = parseInt(loadUserInfo.dailyExerciseGoal);
-    var today = getDateNumFromDate(new Date());
+  console.log('signing in remote user: ' + userObject.userName);
+  currentUser.userName = userObject.userName;
+  currentUser.userEmail = userObject.userEmail;
+  currentUser.dailyWaterIntakeGoal = userObject.dailyWaterIntakeGoal;
+  currentUser.dailyProteinIntakeGoal = parseInt(userObject.dailyProteinIntakeGoal);
+  currentUser.dailyExerciseGoal = parseInt(userObject.dailyExerciseGoal);
+  var today = getDateNumFromDate(new Date());
 
-    if ( today === loadUserInfo.currentDateNumber) {
+  if ( today === userObject.currentDateNumber) {
       // We're on the same day
-      console.log('same day');
-      currentUser.dailyWaterIntake = parseInt(loadUserInfo.dailyWaterIntake);
-      currentUser.dailyProteinIntake = parseInt(loadUserInfo.dailyProteinIntake);
-      currentUser.dailyExercise = parseInt(loadUserInfo.dailyExercise);
-    } else {
-      console.log('new day');
-      // today is a new day - set our daily progress to 0
-      currentUser.dailyWaterIntake = 0;
-      currentUser.dailyProteinIntake = 0;
-      currentUser.dailyExercise = 0;
-    }
-    currentUser.currentDateNumber = today;
-    currentUser.currentDate = new Date();
-    currentUser.userData = loadUserInfo.userData;
-    console.log(loadUserInfo.userData);
+    console.log('same day');
+    currentUser.dailyWaterIntake = parseInt(userObject.dailyWaterIntake);
+    currentUser.dailyProteinIntake = parseInt(userObject.dailyProteinIntake);
+    currentUser.dailyExercise = parseInt(userObject.dailyExercise);
+  } else {
+    console.log('new day');
+    // today is a new day - set our daily progress to 0
+    currentUser.dailyWaterIntake = 0;
+    currentUser.dailyProteinIntake = 0;
+    currentUser.dailyExercise = 0;
+  }
+  currentUser.currentDateNumber = today;
+  currentUser.currentDate = new Date();
+  if (userObject.userData ) {
+    currentUser.userData = userObject.userData;
+    console.log(userObject.userData);
     console.log(currentUser.userName + ' ' + currentUser.userData);
-  });
-  this.updateLocalStorage();
+  }
+  currentUser.updateLocalStorage();
+  currentUser.userSignedIn();
   window.open('daily.html', '_self');
 
 };
 
 User.prototype.registerNewUserRemote = function() {
   if (useRemoteData == true){
-    console.log('registering new user remote');
-    var usersRef = myDataRef.child('users');
-    var curUserRef = usersRef.child(this.userName);
-    curUserRef.set( currentUser );
+    var ref = new Firebase("https://luminous-torch-2017.firebaseio.com");
+    ref.createUser({
+      email    : document.getElementById('emailInput').value,
+      password : document.getElementById('passwordInput').value
+    }, function(error, userData) {
+      if (error) {
+        console.log("Error creating user:", error);
+      } else {
+        console.log("Successfully created user account with uid:", userData.uid);
+        console.log('new user');
+        ref.authWithPassword({
+          email    :  document.getElementById('emailInput').value,
+          password : document.getElementById('passwordInput').value
+        }, function(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData.uid);
+            currentUser.userUID = authData.uid;
+            console.log(currentUser.userUID + ' ' + authData.uid);
+            if (currentUser.userUID != currentUser.userName){
+              console.log('registering new user remote ' + this.userName + ' ' + currentUser.userName + currentUser.userUID);
+              var usersRef = myDataRef.child('users');
+              var curUserRef = usersRef.child(currentUser.userUID);
+              curUserRef.set( currentUser );
+            }
+
+          }
+        });
+
+      }
+    });
   }
 };
 
 User.prototype.registerNewUser = function (){
   console.log('registering new user');
   this.userName = document.getElementById('nameInput').value;
+  this.userUID = this.userName;
   this.userEmail = document.getElementById('emailInput').value;
   this.dailyWaterIntakeGoal = document.getElementById('waterInput').value;
   this.dailyProteinIntakeGoal = document.getElementById('proteinInput').value;
   this.dailyExerciseGoal = document.getElementById('exerciseInput').value;
-  this.userData = [];
-  this.userData = this.userData.push[currentUserDataArray()];
+  this.userData = [currentUserDataArray()];
   // console.log('Localstorage username: ' + JSON.parse(localStorage.getItem('OnTrack-currentUser')).userName + ' entered name: ' + this.userName);
   if (localStorage.getItem('OnTrack-currentUser')) {
     if (JSON.parse(localStorage.getItem('OnTrack-currentUser')).userName == this.userName) {
       // console.log('Local Storage for OnTrack User ' + this.userName + ' Exists');
       DlgShow('Sorry ' + this.userName + ', that name is already in use.', 'Do you want to login as <b>' + this.userName + '</b> or change your user name?');
     } else { // local storage does not match just entered userName
-      console.log('new user');
       this.registerNewUserRemote();
       localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
       currentUser.usedMachine();
+      currentUser.userSignedIn();
 
       // console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
-      // window.open('daily.html', '_self');
+      window.open('daily.html', '_self');
     }
   } else // no local storage
   {
     this.registerNewUserRemote();
     localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
     currentUser.usedMachine();
+    currentUser.userSignedIn();
+
     window.open('daily.html', '_self');
   }
 };
@@ -268,16 +314,39 @@ function checkIfUserExists(userId) {
   });
 }
 
-User.prototype.signinUser = function(name){
+User.prototype.signinUser = function(name, password){
   // var usersRef = myDataRef.child('users');
   // var curUserRef = usersRef.child(this.userName);
   // curUserRef.set( currentUser );
-  if (useRemoteData == true){
-    checkIfUserExists(name);
 
+  if (useRemoteData){
+    var ref = new Firebase('https://luminous-torch-2017.firebaseio.com');
+
+    ref.authWithPassword({
+      email    :  name,
+      password : password
+    }, function(error, authData) {
+      if (error) {
+        console.log('Login Failed!', error);
+      } else {
+        console.log('Authenticated successfully with payload:', authData);
+        currentUser.userUID = authData.uid;
+
+      }
+    });
+
+    var usersRef = new Firebase(USERS_LOCATION);
+    usersRef.child(this.userUID).once('value', function(snapshot) {
+      if (snapshot.val() !== null){
+        currentUser.signinRemoteUser(snapshot.val());
+      } else  {
+        window.open('register.html', '_self');
+      }
+    });
   } else {
     window.open('register.html', '_self');
-
+// logic around here to deal with local storage 'sign in'
+// if username input is same as current local storage, then use it, otherwise register.
   }
 
 };
