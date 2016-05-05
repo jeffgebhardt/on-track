@@ -1,7 +1,5 @@
 .two.columns{
   margin: 10px;
-  border-style: solid;
-  border-width: thin;
   text-align: center;
 }
 
@@ -15,14 +13,19 @@
   font-size: 7pt;
 }
 
+.six.columns{
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 5%;
+}
+
 .three.columns a{
   text-decoration: none;
 }
 
 .four.columns{
   margin: 10px;
-  border-style: solid;
-  border-width: thin;
   text-align: left;
 }
 
@@ -33,13 +36,7 @@
 .twelve.columns{
   margin-top: 10px;
   margin-bottom: 10px;
-  border-style: solid;
-  border-width: thin;
   text-align: center;
-}
-
-.container{
-  border: 1px solid black;
 }
 
 footer{
@@ -50,7 +47,6 @@ footer{
   margin-bottom: 1vw;
   text-align: center;
   flex-direction: column;
-  /*border: 3px solid black;*/
 }
 
 footer h8{
@@ -66,4 +62,8 @@ footer p{
 
 section{
   margin:.3vw;
+}
+
+.float{
+  float: left;
 }
