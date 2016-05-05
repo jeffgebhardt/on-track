@@ -139,9 +139,11 @@ User.prototype.updateLocalStorage = function() {
 // update userInfo and userData to local storage
   currentUser.updateUserData();
   localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
-  var usersRef = myDataRef.child('users');
-  var curUserRef = usersRef.child(this.userName);
-  curUserRef.set( currentUser );
+  if(useRemoteData){
+    var usersRef = myDataRef.child('users');
+    var curUserRef = usersRef.child(this.userName);
+    curUserRef.set( currentUser );
+  }
 };
 
 // one or more functions to get an array of chart data from the localStorage userData.
