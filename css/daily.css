@@ -13,15 +13,11 @@ h4{
   height: 50%;
   /*border-radius: 10px;*/
 }
-/*
-ul{
-  list-style: none;
-  padding-left: 5%;
-}
 
- li{
-   text-align: center;
- }*/
+.divBorder input{
+  margin-left: .8vw;
+  margin-right: .8vw;
+}
 
  .four.columns{
    text-align: center;
