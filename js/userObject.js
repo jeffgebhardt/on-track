@@ -32,6 +32,7 @@ function User(){
 }
 
 User.prototype.getUserDataFromStorage = function() {
+  console.log('getting user data from storage. Remote data = ' + useRemoteData);
   if (localStorage.getItem('OnTrack-currentUser')) {
     var loadUserInfo = JSON.parse(localStorage.getItem('OnTrack-currentUser'));
     this.userName = loadUserInfo.userName;
@@ -229,6 +230,7 @@ User.prototype.registerNewUserRemote = function() {
     }, function(error, userData) {
       if (error) {
         console.log("Error creating user:", error);
+        alert('User with that email already exists - please log in ');
       } else {
         console.log("Successfully created user account with uid:", userData.uid);
         console.log('new user');
