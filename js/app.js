@@ -28,9 +28,14 @@ function buttonHandler(e) {
 
   }
 }
-function functionX(){
+
+var signIn = document.getElementById('signin-button');
+
+function showSignin(){
   document.getElementById('animate-signin').style.visibility = 'visible';
 }
+
+signIn.addEventListener('click', showSignin);
 // var signIn = document.getElementById('signin-button');
 //
 // function functionX(){
