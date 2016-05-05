@@ -15,6 +15,19 @@ p{
   font-family: 'Quattrocento', serif;
 }
 
+h5{
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #545454;
+  font-family: Quattrocento;
+}
+
+h7{
+  font-size: 9pt;
+  color: #545454;
+  font-family: Quattrocento;
+}
+
 .divBorder{
   /*border: 2px solid black;*/
   margin-bottom: 5%;
@@ -82,7 +95,7 @@ p{
  footer h8{
    display: block;
    margin: .1vw;
-   font-size: 9pt;
+   font-size: 10pt;
  }
 
  footer p{
