@@ -14,13 +14,13 @@
     width: 100%;
   }
 }*/
-
+/*
 #animate-signin{
   animation-duration: 2s;
   animation-name: signin;
 }
 
-@keyframes signin{
+@-webkit-keyframes signin{
   from {
     opacity: 0;
       }
@@ -28,6 +28,33 @@
   to {
     opacity: 1;
   }
+}*/
+
+header{
+  display: flex;
+}
+
+button{
+  margin: 5px;
+  margin-top: 10px;
+}
+
+a{
+  text-decoration: none;
+}
+
+input[type="text"],
+input[type="password"]{
+  margin: 0px;
+  width: 85%;
+  font-size: 9pt;
+  height: 3vh;
+  padding: 0px;
+  visibility: hidden;
+}
+
+#animate-signin{
+  float: right;
 }
 
 .patient1 {
@@ -40,12 +67,20 @@
   object-fit: scale-down;
 }
 
-#footerOne {
-  display: flex;
-  align-content: space-around;
-  flex-direction:column;;
-  line-height: 0px;
+.three.columns{
+  float: right;
 }
+
+.three.columns button{
+  width: 80px;
+  display: inline;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
+  font-size: 7pt;
+}
+
 footer{
   clear: both;
   width: 80%;
