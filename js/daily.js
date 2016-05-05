@@ -55,7 +55,7 @@ function handleProtein(e){
   protein.textContent = null;
   // var proteinValue = parseInt(event.target.proteinInput.value);
   // var proteinValue = parseInt(document.getElementById('proteinInput').value);
-  currentUser.eatProtein();
+  // currentUser.eatProtein();
   proteinChart.datasets[0].bars[0].value = (currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100;
   conditionalColors(proteinChart);
   proteinChart.update();
@@ -79,7 +79,7 @@ function handleExercise(e){
   exercise.textContent = null;
   // var exerciseValue = parseInt(event.target.exerciseInput.value);
   // var exerciseValue = parseInt(document.getElementById('exerciseInput').value);
-  currentUser.doExercise(exerciseValue);
+  // currentUser.doExercise();
   exerciseChart.datasets[0].bars[0].value = (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100;
   conditionalColors(exerciseChart);
   exerciseChart.update();
@@ -140,7 +140,7 @@ function buttonHandler(e) {
 
   }
 }
-document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
+// document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
 
 if (localStorage.getItem('OnTrack-currentUser')){
   console.log('Local Storage Exists');
@@ -150,3 +150,10 @@ if (localStorage.getItem('OnTrack-currentUser')){
 } else {
   window.open('register.html', '_self');
 }
+var firstName = currentUser.userName;
+function greetUser(){
+  var capital = firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
+  return capital;
+};
+
+document.getElementById('helloMessage').innerHTML = 'Hello ' + greetUser() + '.';

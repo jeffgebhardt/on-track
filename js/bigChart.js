@@ -72,6 +72,14 @@ if (localStorage.getItem('OnTrack-currentUser')){
   window.open('register.html', '_self');
 }
 
+var firstName = currentUser.userName;
+function greetUser(){
+  var capital = firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
+  return capital;
+};
+
+document.getElementById('helloMessage').innerHTML = 'Hello ' + greetUser() + '.';
+
 currentUser.fakeLastNDays(5);
 
 getChartData();
