@@ -414,7 +414,28 @@ there.
 
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : landscape) { /* STYLES GO HERE */
+  input.small {
+    height: 22px;
+    margin-top: 0px;
+    margin-left: 5px;
+    background-color: red;
+  }
+  button.small {
+    height: 22px;
+    padding: 0 5px;
+    margin-top: 0px;
+    line-height: normal;
+    margin-left: 5px;
+  }
+
+}
+
+@media (min-width: 400px) {
+}
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {}
