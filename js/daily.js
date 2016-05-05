@@ -110,6 +110,18 @@ User.prototype.updateDailyHTML = function () {
   console.log(currentUser);
 };
 
+function buttonHandler(e) {
+  var targetEl = e.target;
+  e.preventDefault();
+  switch (e.target.id) {
+  case 'signout-button':
+    currentUser.userSignedOut();
+    break;
+
+  }
+}
+document.getElementById('signout-button').addEventListener('click',buttonHandler, false);
+
 if (localStorage.getItem('OnTrack-currentUser')){
   console.log('Local Storage Exists');
   currentUser.getUserDataFromStorage();
