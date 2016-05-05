@@ -28,6 +28,16 @@ function buttonHandler(e) {
 
   }
 }
+function functionX(){
+  document.getElementById('animate-signin').style.visibility = 'visible';
+}
+// var signIn = document.getElementById('signin-button');
+//
+// function functionX(){
+//   signIn.style.WebkitAnimation = 'signin';
+// }
+//
+// signIn.addEventListener('click', functionX);
 
 // if (localStorage.getItem('OnTrack-SignedIn')){
   // console.log('OnTrack - we have been here');
