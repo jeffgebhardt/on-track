@@ -49,12 +49,14 @@ input[type="password"]{
   width: 85%;
   font-size: 9pt;
   height: 3vh;
-  padding: 0px;
-  visibility: hidden;
+  padding: 5px;
+  background-color: inherit;
 }
 
 #animate-signin{
   float: right;
+  visibility: hidden;
+
 }
 
 .patient1 {
