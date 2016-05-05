@@ -23,9 +23,14 @@ function buttonHandler(e) {
     console.log('signin-button pressed');
     userName = document.getElementById('emailInput').value;
     userPassword = document.getElementById('passwordInput').value;
-    currentUser.signinUser(userName, userPassword);
+    if(userName !== "" && userPassword !== ""){
+      currentUser.signinUser(userName, userPassword);
+    }
     break;
-
+  case 'register-button':
+    console.log('register-button pressed');
+    window.open('register.html', '_self');
+    break;
   }
 }
 
@@ -65,3 +70,4 @@ signIn.addEventListener('click', showSignin);
 timeSwitch();
 
 document.getElementById('signin-button').addEventListener('click', buttonHandler, false);
+document.getElementById('register-button').addEventListener('click', buttonHandler, false);
