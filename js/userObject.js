@@ -35,6 +35,7 @@ User.prototype.getUserDataFromStorage = function() {
   if (localStorage.getItem('OnTrack-currentUser')) {
     var loadUserInfo = JSON.parse(localStorage.getItem('OnTrack-currentUser'));
     this.userName = loadUserInfo.userName;
+    this.userUID = loadUserInfo.userUID;
     this.userEmail = loadUserInfo.userEmail;
     this.dailyWaterIntakeGoal = parseInt(loadUserInfo.dailyWaterIntakeGoal);
     this.dailyProteinIntakeGoal = parseInt(loadUserInfo.dailyProteinIntakeGoal);
@@ -146,8 +147,8 @@ User.prototype.updateLocalStorage = function() {
 
   if (useRemoteData){
     var usersRef = myDataRef.child('users');
-    console.log('trying to access remote user: ' + currentUser.userName);
-    var curUserRef = usersRef.child(currentUser.userName);
+    console.log('trying to access remote user: ' + currentUser.userName + currentUser.userUID);
+    var curUserRef = usersRef.child(currentUser.userUID);
     curUserRef.set( currentUser );
   }
 };
@@ -157,9 +158,10 @@ User.prototype.getChartData = function () {
 };
 
 User.prototype.clearCurrentUserStorage = function () {
-  if (localStorage.getItem('OnTrack-currentUser')) {
-    localStorage.removeItem('OnTrack-currentUser');
-  }
+  console.log('clearing local storage');
+  localStorage.removeItem('OnTrack-currentUser');
+  localStorage.removeItem('OnTrack');
+  localStorage.removeItem('OnTrack-SignedIn');
 };
 
 User.prototype.userSignedIn = function(){
@@ -168,6 +170,7 @@ User.prototype.userSignedIn = function(){
 
 User.prototype.userSignedOut = function(){
   localStorage.removeItem('OnTrack-SignedIn');
+  User.prototype.clearCurrentUserStorage();
   window.open('index.html', '_self');
 };
 
@@ -244,6 +247,11 @@ User.prototype.registerNewUserRemote = function() {
               var usersRef = myDataRef.child('users');
               var curUserRef = usersRef.child(currentUser.userUID);
               curUserRef.set( currentUser );
+              localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
+              currentUser.usedMachine();
+              currentUser.userSignedIn();
+
+              window.open('daily.html', '_self');
             }
 
           }
@@ -269,22 +277,26 @@ User.prototype.registerNewUser = function (){
       // console.log('Local Storage for OnTrack User ' + this.userName + ' Exists');
       DlgShow('Sorry ' + this.userName + ', that name is already in use.', 'Do you want to login as <b>' + this.userName + '</b> or change your user name?');
     } else { // local storage does not match just entered userName
+      if(useRemoteData){ this.registerNewUserRemote();} else {
+        localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
+        currentUser.usedMachine();
+        currentUser.userSignedIn();
+        // console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
+        // window.open('daily.html', '_self');
+      }
+
+    }
+  } else // no local storage
+  {
+    if(useRemoteData){
       this.registerNewUserRemote();
+    } else {
       localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
       currentUser.usedMachine();
       currentUser.userSignedIn();
 
-      // console.log('User: ' + this.UserName + ' water intake: ' + this.dailyWaterIntakeGoal + ' protein intake: ' + this.dailyProteinIntakeGoal + ' exercise: ' + this.dailyExerciseGoal);
       window.open('daily.html', '_self');
     }
-  } else // no local storage
-  {
-    this.registerNewUserRemote();
-    localStorage.setItem('OnTrack-currentUser',JSON.stringify(currentUser));
-    currentUser.usedMachine();
-    currentUser.userSignedIn();
-
-    window.open('daily.html', '_self');
   }
 };
 
@@ -321,8 +333,8 @@ User.prototype.signinUser = function(name, password){
   // curUserRef.set( currentUser );
 
   if (useRemoteData){
+    console.log('attempting auth with: ' + name + password);
     var ref = new Firebase('https://luminous-torch-2017.firebaseio.com');
-
     ref.authWithPassword({
       email    :  name,
       password : password
@@ -332,18 +344,18 @@ User.prototype.signinUser = function(name, password){
       } else {
         console.log('Authenticated successfully with payload:', authData);
         currentUser.userUID = authData.uid;
+        var usersRef = new Firebase(USERS_LOCATION);
+        usersRef.child(currentUser.userUID).once('value', function(snapshot) {
+          if (snapshot.val() !== null){
+            currentUser.signinRemoteUser(snapshot.val());
+          } else  {
+            window.open('register.html', '_self');
+          }
+        });
 
       }
     });
 
-    var usersRef = new Firebase(USERS_LOCATION);
-    usersRef.child(this.userUID).once('value', function(snapshot) {
-      if (snapshot.val() !== null){
-        currentUser.signinRemoteUser(snapshot.val());
-      } else  {
-        window.open('register.html', '_self');
-      }
-    });
   } else {
     window.open('register.html', '_self');
 // logic around here to deal with local storage 'sign in'
@@ -351,3 +363,7 @@ User.prototype.signinUser = function(name, password){
   }
 
 };
+
+if (localStorage.getItem('OnTrack-Remote')) {
+  useRemoteData = true;
+}
