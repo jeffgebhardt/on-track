@@ -2,12 +2,13 @@ var currentUser = new User();
 var displayImage = document.getElementById('pictures');
 var slideShow = ['img/nonactivepatient.png','img/activepatient.png','img/malepatiendoc2.png','img/nonactivepatient3.png','img/activepatient3.jpg'];
 var displaying = 0;
+var buttonDiv = document.getElementById('button-bar-div');
 
 function switchPicture() {
-  displaying++;
   displaying = displaying % 5;
   displayImage.src = '';
   displayImage.src = slideShow[displaying];
+  displaying++;
 
 }
 
@@ -41,6 +42,13 @@ function showSignin(){
 }
 
 signIn.addEventListener('click', showSignin);
+
+function showButtonBar(){
+  console.log('show hidden buttons');
+  buttonDiv.style.visibility = 'visible';
+}
+
+document.getElementById('animate-container').addEventListener('animationend', showButtonBar);
 // var signIn = document.getElementById('signin-button');
 //
 // function functionX(){
