@@ -32,7 +32,7 @@ function handleWater(e){
     break;
   }
   water.textContent = null;
-  waterChart.datasets[0].bars[0].value = (currentUser.dailyWaterIntake / currentUser.dailyWaterIntakeGoal) * 100;
+  waterChart.datasets[0].bars[0].value = ((currentUser.dailyWaterIntake / currentUser.dailyWaterIntakeGoal) * 100).toFixed(0);
   conditionalColors(waterChart);
   waterChart.update();
   var p = document.createElement('p');
@@ -54,7 +54,7 @@ function handleProtein(e){
   }
   protein.textContent = null;
 
-  proteinChart.datasets[0].bars[0].value = (currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100;
+  proteinChart.datasets[0].bars[0].value = ((currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100).toFixed(0);
   conditionalColors(proteinChart);
   proteinChart.update();
   var p = document.createElement('p');
@@ -78,7 +78,7 @@ function handleExercise(e){
   // var exerciseValue = parseInt(event.target.exerciseInput.value);
   // var exerciseValue = parseInt(document.getElementById('exerciseInput').value);
   // currentUser.doExercise();
-  exerciseChart.datasets[0].bars[0].value = (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100;
+  exerciseChart.datasets[0].bars[0].value = ((currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100).toFixed(0);
   conditionalColors(exerciseChart);
   exerciseChart.update();
   var p = document.createElement('p');

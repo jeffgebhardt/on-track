@@ -36,26 +36,26 @@ function showBigChart() {
     datasets: [{
       label: 'Daily Goal',
       fillColor: 'rgba(100, 100, 100, 0.2)',
-      strokeColor: 'black',
-      pointColor: 'black',
+      strokeColor: '#2b2b2b',
+      pointColor: '#2b2b2b',
       data: lineChartGoal
     }, {
       label: 'Daily Water Intake',
       fillColor: 'rgba(0,0,0,0)',
-      strokeColor: 'blue',
-      pointColor: 'blue',
+      strokeColor: '#3aa7bf',
+      pointColor: '#3aa7bf',
       data: dayWater
     }, {
       label: 'Daily Protein Intake',
       fillColor: 'rgba(0,0,0,0)',
-      strokeColor: 'red',
-      pointColor: 'red',
+      strokeColor: '#b02e2e',
+      pointColor: '#b02e2e',
       data: dayProtein
     }, {
       label: 'Daily Exercise',
       fillColor: 'rgba(0,0,0,0)',
-      strokeColor: 'green',
-      pointColor: 'green',
+      strokeColor: '#35a43a',
+      pointColor: '#35a43a',
       data: dayExercise
     }]
   };

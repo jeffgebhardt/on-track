@@ -48,19 +48,19 @@ span{
 }
 
 .black{
-  background-color: black;
+  background-color: #2b2b2b;
 }
 
 .blue{
-  background-color: blue;
+  background-color: #3aa7bf;
 }
 
 .red{
-  background-color: red;
+  background-color: #b02e2e;
 }
 
 .green{
-  background-color: green;
+  background-color: #35a43a;
 }
 
 .footerHr{
@@ -109,4 +109,11 @@ h3, h5{
 
 p{
   font-family: 'Quattrocento', serif;
+}
+
+h5{
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #545454;
+  font-family: Quattrocento;
 }
