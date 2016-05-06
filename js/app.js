@@ -1,6 +1,6 @@
 var currentUser = new User();
 var displayImage = document.getElementById('pictures');
-var slideShow = ['img/nonactivepatient.png','img/activepatient.png','img/malepatiendoc2.png','img/nonactivepatient3.png','img/activepatient3.jpg'];
+var slideShow = ['img/nonactivepatient.jpg','img/activepatient.jpg','img/malepatiendoc2.jpg','img/nonactivepatient3.jpg','img/yogapatient.jpg'];
 var displaying = 0;
 var buttonDiv = document.getElementById('button-bar-div');
 

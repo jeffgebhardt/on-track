@@ -138,9 +138,9 @@ if (localStorage.getItem('OnTrack-currentUser')){
 } else {
   window.open('register.html', '_self');
 }
-var rightNowData = [(currentUser.dailyWaterIntake / currentUser.dailyWaterIntakeGoal) * 100,
-    (currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100,
-    (currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100];
+var rightNowData = [((currentUser.dailyWaterIntake / currentUser.dailyWaterIntakeGoal) * 100).toFixed(0),
+    ((currentUser.dailyProteinIntake / currentUser.dailyProteinIntakeGoal) * 100).toFixed(0),
+    ((currentUser.dailyExercise / currentUser.dailyExerciseGoal) * 100).toFixed(0)];
 
 showWaterChart();
 showProteinChart();
