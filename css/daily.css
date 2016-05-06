@@ -20,6 +20,7 @@ h5{
   padding-right: 10%;
   color: #545454;
   font-family: Quattrocento;
+  margin-bottom: 1em;
 }
 
 h7{
@@ -32,7 +33,7 @@ h7{
   /*border: 2px solid black;*/
   margin-bottom: 5%;
   margin-bottom: 5%;
-  height: 50%;
+  height: 40%%;
   /*border-radius: 10px;*/
 }
 
@@ -74,7 +75,7 @@ h7{
  }
 
  h4{
-   margin-left: 1.5vw;
+   margin-left: 1.2vw;
    margin-right: 1vw;
    display: inline;
    font-size: 1.2vw;
