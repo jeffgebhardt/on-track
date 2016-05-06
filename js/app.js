@@ -24,9 +24,10 @@ function buttonHandler(e) {
     console.log('signin-button pressed');
     userName = document.getElementById('emailInput').value;
     userPassword = document.getElementById('passwordInput').value;
-    if(userName !== "" && userPassword !== ""){
+    if(userName !== '' && userPassword !== ''){
       currentUser.signinUser(userName, userPassword);
     }
+
     break;
   case 'register-button':
     console.log('register-button pressed');
@@ -39,6 +40,8 @@ var signIn = document.getElementById('signin-button');
 
 function showSignin(){
   document.getElementById('animate-signin').style.visibility = 'visible';
+  document.getElementById('animate-signin').style.display = 'block';
+  document.getElementById('emailInput').focus();
 }
 
 signIn.addEventListener('click', showSignin);
@@ -46,6 +49,7 @@ signIn.addEventListener('click', showSignin);
 function showButtonBar(){
   console.log('show hidden buttons');
   buttonDiv.style.visibility = 'visible';
+  buttonDiv.style.display = 'block';
 }
 
 document.getElementById('animate-container').addEventListener('animationend', showButtonBar);
@@ -57,9 +61,11 @@ document.getElementById('animate-container').addEventListener('animationend', sh
 //
 // signIn.addEventListener('click', functionX);
 
-// if (localStorage.getItem('OnTrack-SignedIn')){
-  // console.log('OnTrack - we have been here');
-  // show the sign-in button.
+if (localStorage.getItem('OnTrack')) {
+} else {
+  document.getElementById('animate-container').classList.add('one-time');
+  currentUser.usedMachine();
+}
 
 // document.getElementById('nameInput').style.visibility = 'visible';
 // document.getElementById('nameLabel').style.visibility = 'visible';
