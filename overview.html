@@ -10,26 +10,40 @@
     <link rel="stylesheet" href="css/overview.css">
   </head>
   <body>
-    <content class="u-pull-center">
+    <content class="container u-pull-left">
+
       <header>
         <img src="img/logoTest.png"/>
       </header>
-      <h4>Health Tracking for Patients Undergoing Chemo</h4>
+
+      <h5>Health Tracking for Patients Undergoing Chemo</h5>
       <hr>
-      <h3>Goals</h3>
-      <h6>Easy Data Entry</h6>
-      <h6>Daily/Consumption Goals</h6>
-      <h6>Tracking Daily Data</h6>
-      <h6>Charting Data</h6>
-      <h6>Saving Data Per User</h6>
-      <hr>
+
+        <h3>Project Goals</h3>
+      <div class="goals">
+        <div class="goals-left">
+          <h6>User-Defined Daily Goals</h6>
+          <h6>Daily Tracking Progress vs Goals</h6>
+          <h6>Single-click Data Entry</h6>
+
+        </div>
+        <div class="goals-right">
+          <h6>Chart Daily Progress</h6>
+          <h6>Data Persistence</h6>
+          <h6>Remote data storage & user authentication</h6>
+        </div>
+      </div>
+
       <h3>Tech Overview</h3>
-      <h6>Skeleton</h6>
-      <h6>Chart.js</h6>
-      <h6>Firebase + User Authentication</h6>
-      <hr>
-      <a href="index.html"><h3>Demo</h3></a>
-      <hr>
+      <h6>Skeleton - lean responsive css framework</h6>
+      <h6>Chart.js - data charting and graphing</h6>
+      <h6>Firebase - remote database & User Authentication</h6>
+
+      <h3>Challenges</h3>
+      <h6>Chart.js - incorrect documentation/examples, semi-responsive behavior & scaling </h6>
+      <h6>Firebase - implementing remote database without breaking local behavior for other devs</h6>
+      <a href="index.html"><h3 class="demo">Demo</h3></a>
+    </div>
     </content>
   </body>
 </html>
