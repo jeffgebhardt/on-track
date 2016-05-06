@@ -29,8 +29,8 @@ header{
   display: flex;
   height:  90px;
 }
-#animate-container {
-  animation-duration: 3s;
+#animate-container.one-time {
+  animation-duration: 1s;
   animation-name: slidein;
   text-align: left;
 }

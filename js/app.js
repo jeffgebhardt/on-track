@@ -24,10 +24,9 @@ function buttonHandler(e) {
     console.log('signin-button pressed');
     userName = document.getElementById('emailInput').value;
     userPassword = document.getElementById('passwordInput').value;
-    if(userName !== "" && userPassword !== ""){
+    if(userName !== '' && userPassword !== ''){
       currentUser.signinUser(userName, userPassword);
     }
-    document.getElementById('emailInput').focus();
 
     break;
   case 'register-button':
@@ -42,6 +41,7 @@ var signIn = document.getElementById('signin-button');
 function showSignin(){
   document.getElementById('animate-signin').style.visibility = 'visible';
   document.getElementById('animate-signin').style.display = 'block';
+  document.getElementById('emailInput').focus();
 }
 
 signIn.addEventListener('click', showSignin);
@@ -61,9 +61,11 @@ document.getElementById('animate-container').addEventListener('animationend', sh
 //
 // signIn.addEventListener('click', functionX);
 
-// if (localStorage.getItem('OnTrack-SignedIn')){
-  // console.log('OnTrack - we have been here');
-  // show the sign-in button.
+if (localStorage.getItem('OnTrack')) {
+} else {
+  document.getElementById('animate-container').classList.add('one-time');
+  currentUser.usedMachine();
+}
 
 // document.getElementById('nameInput').style.visibility = 'visible';
 // document.getElementById('nameLabel').style.visibility = 'visible';
