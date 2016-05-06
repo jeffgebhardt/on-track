@@ -161,7 +161,7 @@ User.prototype.getChartData = function () {
 User.prototype.clearCurrentUserStorage = function () {
   console.log('clearing local storage');
   localStorage.removeItem('OnTrack-currentUser');
-  localStorage.removeItem('OnTrack');
+  // localStorage.removeItem('OnTrack');
   localStorage.removeItem('OnTrack-SignedIn');
 };
 

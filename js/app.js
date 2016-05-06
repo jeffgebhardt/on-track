@@ -1,15 +1,16 @@
 var currentUser = new User();
 var displayImage = document.getElementById('pictures');
-var slideShow = ['img/nonactivepatient.jpg','img/activepatient.jpg','img/malepatiendoc2.jpg','img/nonactivepatient3.jpg','img/yogapatient.jpg'];
+var slideShow = ['img/nonactivepatient.jpg','img/activepatient.jpg','img/malepatientdoctor.jpg','img/malepatiendoc2.jpg','img/nonactivepatient3.jpg','img/activepatient3.jpg'];
 var displaying = 0;
 var buttonDiv = document.getElementById('button-bar-div');
+
+displayImage.src = slideShow[displaying];
 
 function switchPicture() {
   displaying = displaying % 5;
   displayImage.src = '';
   displayImage.src = slideShow[displaying];
   displaying++;
-
 }
 
 function timeSwitch() {
@@ -53,33 +54,14 @@ function showButtonBar(){
 }
 
 document.getElementById('animate-container').addEventListener('animationend', showButtonBar);
-// var signIn = document.getElementById('signin-button');
-//
-// function functionX(){
-//   signIn.style.WebkitAnimation = 'signin';
-// }
-//
-// signIn.addEventListener('click', functionX);
 
-if (localStorage.getItem('OnTrack')) {
+if (localStorage.getItem('OnTrack') === "true") {
+  console.log('showing button bar');
+  showButtonBar();
 } else {
   document.getElementById('animate-container').classList.add('one-time');
   currentUser.usedMachine();
 }
-
-// document.getElementById('nameInput').style.visibility = 'visible';
-// document.getElementById('nameLabel').style.visibility = 'visible';
-// document.getElementById('signin-button').style.visibility = 'visible';
-  // currentUser.getUserDataFromStorage();
-  // window.open('daily.html', '_self');
-
-// } else {
-//   //first time here - hide or show which buttons?
-//   document.getElementById('nameInput').style.visibility = 'hidden';
-//   document.getElementById('nameLabel').style.visibility = 'hidden';
-//   document.getElementById('signin-button').style.visibility = 'hidden';
-
-// }
 
 timeSwitch();
 

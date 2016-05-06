@@ -1,12 +1,17 @@
+#animate-container.one-time {
+  animation-duration: 1s;
+  animation-name: slidein;
+  text-align: left;
+}
 
 @keyframes slidein {
   from {
     margin-left: 100%;
-    width: 300%;
+    /*width: 300%;*/
   }
 
   to {
-    width: 100%;
+    /*width: 100%;*/
   }
 }
 /*
@@ -27,12 +32,6 @@
 
 header{
   display: flex;
-  height:  90px;
-}
-#animate-container.one-time {
-  animation-duration: 1s;
-  animation-name: slidein;
-  text-align: left;
 }
 
 button{
@@ -77,11 +76,9 @@ input[type="password"]{
   object-fit: scale-down;
 }
 
-.three.columns{
-  float: right;
-}
 
-.three.columns button{
+
+#button-bar-div button{
   width: 80px;
   display: inline;
   padding: 0px;
