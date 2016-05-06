@@ -27,6 +27,8 @@ function buttonHandler(e) {
     if(userName !== "" && userPassword !== ""){
       currentUser.signinUser(userName, userPassword);
     }
+    document.getElementById('emailInput').focus();
+
     break;
   case 'register-button':
     console.log('register-button pressed');
@@ -39,6 +41,7 @@ var signIn = document.getElementById('signin-button');
 
 function showSignin(){
   document.getElementById('animate-signin').style.visibility = 'visible';
+  document.getElementById('animate-signin').style.display = 'block';
 }
 
 signIn.addEventListener('click', showSignin);
@@ -46,6 +49,7 @@ signIn.addEventListener('click', showSignin);
 function showButtonBar(){
   console.log('show hidden buttons');
   buttonDiv.style.visibility = 'visible';
+  buttonDiv.style.display = 'block';
 }
 
 document.getElementById('animate-container').addEventListener('animationend', showButtonBar);
